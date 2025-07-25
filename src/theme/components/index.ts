@@ -25,28 +25,28 @@ const fontFaceDeclarations = `
         font-style: normal;
         font-weight: 400;
         src: url(${InterRegularWOFF2}) format('woff2'), url(${InterRegularWOFF}) format('woff'), url(${InterTTF}) format('truetype');
-      };
+      }
       @font-face {
         font-display: swap; 
         font-family: 'Inter';
         font-style: normal;
         font-weight: 500;
         src: url(${InterMediumWOFF2}) format('woff2'), url(${InterMediumWOFF}) format('woff'), url(${InterTTF}) format('truetype');
-      };
+      }
       @font-face {
         font-display: swap; 
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         src: url(${InterSemiBoldWOFF2}) format('woff2'), url(${InterSemiBoldWOFF}) format('woff'), url(${InterTTF}) format('truetype');
-      };
+      }
       @font-face {
         font-display: swap; 
         font-family: 'Inter';
         font-style: normal;
         font-weight: 700;
         src: url(${InterBoldWOFF2}) format('woff2'), url(${InterBoldWOFF}) format('woff'), url(${InterTTF}) format('truetype');
-      };
+      }
     `;
 
 export const components: Components = {
