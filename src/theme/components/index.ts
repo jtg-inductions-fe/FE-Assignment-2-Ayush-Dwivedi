@@ -14,6 +14,10 @@ import InterRegularWOFF2 from '@assets/fonts/inter/inter-regular.woff2';
 import InterSemiBoldWOFF from '@assets/fonts/inter/inter-semibold.woff';
 import InterSemiBoldWOFF2 from '@assets/fonts/inter/inter-semibold.woff2';
 
+/**
+ * Font declarations for Inter font family.
+ * Used via MUI's CssBaseline to inject global @font-face rules.
+ */
 const fontFaceDeclarations = `
       @font-face {
         font-display: swap; 
