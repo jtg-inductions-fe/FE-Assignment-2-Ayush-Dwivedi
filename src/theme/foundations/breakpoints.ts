@@ -1,12 +1,15 @@
 import type { BreakpointsOptions } from '@mui/material/styles';
 
-/* Custom Breakpoints */
+/**
+ * Custom Breakpoints
+ */
 export const breakpoints: BreakpointsOptions = {
     values: {
-        xs: 320, // Mobile
-        sm: 768, // Tablet
-        md: 1024, // Small Desktop
-        lg: 1440, // Desktop
-        xl: 1920, // Large Desktop
+        xs: 0,
+        sm: 320, // Mobile
+        md: 768, // Tablet
+        lg: 1024, // Small Desktop
+        xl: 1440, // Desktop
+        xxl: 1920, // Large Desktop
     },
 };

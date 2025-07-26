@@ -1,9 +1,3 @@
-# Logs
-logs
-*.log
-yarn-debug.log*
-yarn-error.log*
-
 # Files
 .yarn
 node_modules

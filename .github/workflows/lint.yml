@@ -2,9 +2,9 @@ name: Lint on PR and Push
 
 on:
     push:
-        branches: [main]
+        branches: ['*']
     pull_request:
-        branches: [main]
+        branches: ['*']
 
 jobs:
     lint:
@@ -17,7 +17,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: 20.17.0
+                  node-version-file: .nvmrc
                   cache: 'yarn'
 
             - name: Install dependencies

@@ -1,6 +1,6 @@
-import { RouteObject } from 'react-router-dom';
+import { type RouteObject } from 'react-router';
 
-import { RootLayout } from '@layouts/RootLayout';
+import { RootLayout } from '@layouts';
 
 /**
  * Application route configuration using nested routes.

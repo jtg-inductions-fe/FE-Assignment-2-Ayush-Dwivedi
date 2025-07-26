@@ -6,9 +6,9 @@
             "@constant": ["constant/index"],
             "@theme": ["theme/index"],
             "@router": ["router/index"],
-            "@layouts/*": ["layouts/*"],
-            "@pages/*": ["pages/*"],
-            "@components/*": ["components/*"]
+            "@layouts": ["layouts/index"],
+            "@pages": ["pages/index"],
+            "@components": ["components/index"]
         }
     }
 }
