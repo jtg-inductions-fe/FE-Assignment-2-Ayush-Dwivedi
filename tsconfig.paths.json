@@ -4,7 +4,11 @@
         "paths": {
             "@assets/*": ["assets/*"],
             "@constant": ["constant/index"],
-            "@theme": ["theme/index"]
+            "@theme": ["theme/index"],
+            "@router": ["router/index"],
+            "@layouts": ["layouts/index"],
+            "@pages": ["pages/index"],
+            "@components": ["components/index"]
         }
     }
 }
