@@ -61,7 +61,7 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     subtitle1: {
         fontSize: typographyUtil.pxToRem(14),
         fontWeight: 600,
-        lineHeight: typographyUtil.pxToRem(20),
+        lineHeight: 1.5,
     },
 
     caption: {
@@ -72,7 +72,7 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
         [theme.breakpoints.up('md')]: {
             fontSize: typographyUtil.pxToRem(14),
             fontWeight: 600,
-            lineHeight: typographyUtil.pxToRem(20),
+            lineHeight: 1.5,
         },
     },
 });
