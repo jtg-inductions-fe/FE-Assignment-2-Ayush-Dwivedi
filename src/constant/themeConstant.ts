@@ -7,7 +7,7 @@ export const COLORS = {
         50: '#F9FAFB',
         200: '#E5E7EB',
         500: '#6B7280',
-        900: '#111827', //Primary main
+        900: '#111827',
     },
 
     RED: {
