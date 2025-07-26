@@ -8,11 +8,12 @@
         "dev": "vite",
         "build": "tsc -b && vite build",
         "build:dev": "tsc -b && vite build --mode development",
-        "lint": "eslint --fix .",
+        "lint": "eslint . --max-warnings=0",
         "lint:fix": "eslint --fix .",
         "preview": "vite preview",
-        "prettier": "npx prettier --write ./",
-        "postinstall": "husky install"
+        "prettier": "prettier --write ./",
+        "postinstall": "husky install",
+        "ts-check": "tsc --noEmit --project tsconfig.app.json"
     },
     "dependencies": {
         "@emotion/react": "11.14.0",

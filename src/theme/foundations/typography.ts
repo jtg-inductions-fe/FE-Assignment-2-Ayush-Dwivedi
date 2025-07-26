@@ -32,30 +32,30 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     h1: {
         fontSize: typographyUtil.pxToRem(30),
         fontWeight: 700,
-        lineHeight: typographyUtil.pxToRem(45),
+        lineHeight: 1.5,
 
         [theme.breakpoints.up('md')]: {
             fontSize: typographyUtil.pxToRem(48),
-            lineHeight: typographyUtil.pxToRem(62.4),
+            lineHeight: 1.3,
         },
     },
 
     h2: {
         fontSize: typographyUtil.pxToRem(20),
         fontWeight: 600,
-        lineHeight: typographyUtil.pxToRem(30),
+        lineHeight: 1.5,
     },
 
     body1: {
         fontSize: typographyUtil.pxToRem(16),
         fontWeight: 600,
-        lineHeight: typographyUtil.pxToRem(24),
+        lineHeight: 1.5,
     },
 
     body2: {
         fontSize: typographyUtil.pxToRem(12),
         fontWeight: 400,
-        lineHeight: typographyUtil.pxToRem(18),
+        lineHeight: 1.5,
     },
 
     subtitle1: {
@@ -67,7 +67,7 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     caption: {
         fontSize: typographyUtil.pxToRem(12),
         fontWeight: 400,
-        lineHeight: typographyUtil.pxToRem(18),
+        lineHeight: 1.5,
 
         [theme.breakpoints.up('md')]: {
             fontSize: typographyUtil.pxToRem(14),
