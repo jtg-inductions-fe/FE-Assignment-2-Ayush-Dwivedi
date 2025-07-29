@@ -1,4 +1,8 @@
+import * as React from 'react';
+
 import { Outlet } from 'react-router';
+
+import { Header, Sidebar } from '@containers';
 
 /**
  * RootLayout component
@@ -13,12 +17,19 @@ import { Outlet } from 'react-router';
  * </Route>
  * ```
  */
-export const RootLayout = () => (
-    <>
-        <header>Header</header>
-        <main>
-            <Outlet />
-        </main>
-        <footer>Footer</footer>
-    </>
-);
+export const RootLayout = () => {
+    const [isSidebarOpen, setSidebarOpen] = React.useState<boolean>(false);
+    const handleSidebarToggle = () => {
+        setSidebarOpen((prev) => !prev);
+    };
+    return (
+        <>
+            <Header handleToggle={handleSidebarToggle} />
+            <Sidebar open={isSidebarOpen} />
+            <main>
+                <Outlet />
+            </main>
+            <footer>Footer</footer>
+        </>
+    );
+};

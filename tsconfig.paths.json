@@ -8,7 +8,11 @@
             "@router": ["router/index"],
             "@layouts": ["layouts/index"],
             "@pages": ["pages/index"],
-            "@components": ["components/index"]
+            "@components": ["components/index"],
+            "@containers": ["containers/index"],
+            "@types": ["types/index"],
+            "@utils": ["utils/index"],
+            "@hooks": ["hooks/index"]
         }
     }
 }
