@@ -17,4 +17,5 @@ export const toSlug = (text: string): string =>
         .trim()
         .replace(/[^a-z0-9\s-]/g, '') // remove special characters
         .replace(/\s+/g, '-') // replace spaces with dashes
-        .replace(/-+/g, '-'); // collapse multiple dashes
+        .replace(/-+/g, '-') // collapse multiple dashes
+        .replace(/^-+|-+$/g, ''); // remove leading/trailing dashes

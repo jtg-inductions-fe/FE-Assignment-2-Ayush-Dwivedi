@@ -127,7 +127,7 @@ export const Header = ({ handleToggle }: HeaderProps) => {
                             color="inherit"
                             aria-label="open drawer"
                             sx={{ mr: 2 }}
-                            onClick={() => handleToggle}
+                            onClick={handleToggle}
                         >
                             <MenuIcon />
                         </IconButton>
