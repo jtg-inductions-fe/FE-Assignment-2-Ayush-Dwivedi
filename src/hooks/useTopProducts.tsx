@@ -1,10 +1,10 @@
-import { topProducts } from 'constant/topProducts.mock';
-
-import { type ProductType } from '@types';
+import { topProducts } from 'mocks/topProducts.mock';
 
 /**
  * Custom hook to retrieve the list of top products.
  *
  * @returns {ProductType[]} An array of top products.
  */
-export const useTopProducts = (): ProductType[] => topProducts;
+export const useTopProducts = () => ({
+    data: topProducts,
+});

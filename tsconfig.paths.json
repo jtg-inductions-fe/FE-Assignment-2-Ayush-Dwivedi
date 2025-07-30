@@ -3,6 +3,7 @@
         "baseUrl": "./src",
         "paths": {
             "@assets/*": ["assets/*"],
+            "@mocks/*": ["mocks/*"],
             "@constant": ["constant/index"],
             "@theme": ["theme/index"],
             "@router": ["router/index"],
@@ -10,7 +11,6 @@
             "@pages": ["pages/index"],
             "@components": ["components/index"],
             "@containers": ["containers/index"],
-            "@types": ["types/index"],
             "@utils": ["utils/index"],
             "@hooks": ["hooks/index"]
         }
