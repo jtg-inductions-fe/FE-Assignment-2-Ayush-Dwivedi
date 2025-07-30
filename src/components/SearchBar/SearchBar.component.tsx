@@ -23,7 +23,7 @@ import { type SearchBarProps } from '@components';
  *      getOptionLabel={(option) => option.title;}
  *  />
  * </Header>
- * ```tsx
+ * ```
  */
 export const SearchBar = <OptionType,>({
     searchOptions,

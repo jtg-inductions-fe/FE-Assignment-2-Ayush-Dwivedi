@@ -17,7 +17,7 @@ import { type DynamicMenuProps } from '@components';
  * <DynamicMenu items={itemsList}>
  *  <ControllerComponent>
  * </DynamicMenu>
- * ```tsx
+ * ```
  */
 export const DynamicMenu = ({
     items,
@@ -53,7 +53,7 @@ export const DynamicMenu = ({
                     </MenuItem>
                 ))}
             </Menu>
-            <IconButton onClick={handleMenuOpen} aria-controls="menuId">
+            <IconButton onClick={handleMenuOpen} aria-controls={menuId}>
                 {children}
             </IconButton>
         </>

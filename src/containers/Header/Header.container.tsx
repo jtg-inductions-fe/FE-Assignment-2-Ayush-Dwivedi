@@ -28,8 +28,12 @@ import { toSlug } from '@utils';
 /**
  * Header container for the application.
  * Includes logo, search bar, notifications, and user menu.
- *
  * @param {HeaderProps} props
+ * @returns Complete header with hamburger, searchbar, logo, notifications and user menu
+ * @example usage
+ * ```tsx
+ * <Header handleToggle = {sidebarToggleHandler} />
+ * ```
  */
 export const Header = ({ handleToggle }: HeaderProps) => {
     const [searchValue, setSearchValue] = useState<null | string | ProductType>(

@@ -18,7 +18,7 @@ import { type MuiLinkProps } from '@components';
  * <MuiLink to='/'>
  *  Click here
  * </MuiLink>
- * ```tsx
+ * ```
  */
 export const MuiLink = ({ to, href, children, ...restProps }: MuiLinkProps) => {
     if (to) {
