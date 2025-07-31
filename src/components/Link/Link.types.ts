@@ -5,7 +5,7 @@ export type LinkProps = (
           /**
            * The URL to link to for external navigation.
            */
-          href: string | undefined;
+          href: string;
           /**
            * No route for navigation when href is defined
            */

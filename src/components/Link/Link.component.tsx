@@ -17,9 +17,11 @@ import { type LinkProps } from './Link.types';
  * </Link>
  * ```
  */
-export const Link = ({ to, href, ...restProps }: LinkProps) => (
+export const Link = ({ to, href, children, ...restProps }: LinkProps) => (
     <MuiLink
         {...(to ? { component: RouterLink, to } : { href })}
         {...restProps}
-    ></MuiLink>
+    >
+        {children}
+    </MuiLink>
 );
