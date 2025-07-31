@@ -48,7 +48,9 @@ export const Header = ({ onSidebarToggle }: HeaderProps) => {
      */
     const handleSearch = (value: string | ProductType | null) => {
         setSearchValue(value);
-        if (!value) return;
+        if (!value) {
+            return void navigate('/');
+        }
         const productId = typeof value === 'string' ? toSlug(value) : value.id;
         void navigate(`/products/${productId}`);
     };
