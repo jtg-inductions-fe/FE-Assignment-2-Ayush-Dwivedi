@@ -6,9 +6,17 @@ import {
     Menu as MenuIcon,
     Notifications as NotificationsIcon,
 } from '@mui/icons-material';
-import { AppBar, Badge, Box, IconButton, Stack, Toolbar } from '@mui/material';
+import {
+    AppBar,
+    Avatar,
+    Badge,
+    Box,
+    IconButton,
+    Stack,
+    Toolbar,
+} from '@mui/material';
 
-import Avatar from '@assets/images/avatar.webp';
+import userAvatar from '@assets/images/avatar.webp';
 import LogoImg from '@assets/images/logo.webp';
 import { Link, Menu, SearchBar } from '@components';
 import { useGetTopProducts } from '@hooks';
@@ -76,14 +84,13 @@ export const Header = ({ onSidebarToggle }: HeaderProps) => {
                     <MenuIcon />
                 </IconButton>
                 <Stack
-                    overflow={'visible'}
                     sx={{
                         display: { xs: 'none', md: 'flex' },
                     }}
-                    direction={'row'}
+                    direction="row"
                     gap={4}
                 >
-                    <Link to="/" display={'flex'} alignItems={'center'}>
+                    <Link to="/" display="flex" alignItems="center">
                         <Box
                             component="img"
                             src={LogoImg}
@@ -101,21 +108,26 @@ export const Header = ({ onSidebarToggle }: HeaderProps) => {
                         }}
                     />
                 </Stack>
-                <Stack direction={'row'} gap={2}>
+                <Stack direction="row" gap={2}>
                     <Link
                         to="/notifications"
-                        display={'flex'}
-                        alignItems={'center'}
+                        display="flex"
+                        alignItems="center"
                     >
                         <Badge badgeContent={1} color="error">
                             <NotificationsIcon sx={{ color: 'text.primary' }} />
                         </Badge>
                     </Link>
                     <Menu
-                        items={[{ text: 'Star Wars' }, { text: 'abc@def.com' }]}
+                        items={[
+                            {
+                                text: 'Star Wars',
+                            },
+                            { text: 'abc@def.com' },
+                        ]}
                         menuId="user-menu"
                     >
-                        <Box component="img" src={Avatar} alt="User Profile" />
+                        <Avatar src={userAvatar} alt="User Profile" />
                     </Menu>
                 </Stack>
             </Toolbar>

@@ -37,13 +37,13 @@ export const SearchBar = <OptionType,>({
         size="small"
         renderInput={(params) => (
             <TextField
-                placeholder={'Search'}
+                placeholder="Search"
                 slotProps={{
                     input: {
                         ...params.InputProps,
                         startAdornment: (
                             <InputAdornment position="end">
-                                <SearchIcon fontSize={'small'} />
+                                <SearchIcon fontSize="small" />
                             </InputAdornment>
                         ),
                     },

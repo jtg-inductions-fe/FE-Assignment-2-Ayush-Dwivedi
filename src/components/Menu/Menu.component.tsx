@@ -30,7 +30,6 @@ export const Menu = ({ items, menuId, children, ...restProps }: MenuProps) => {
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-
     const isMenuOpen = Boolean(anchorEl);
 
     return (
@@ -46,7 +45,10 @@ export const Menu = ({ items, menuId, children, ...restProps }: MenuProps) => {
                 {items.map(({ text, ...menuItemProp }, index) => (
                     <MenuItem
                         key={index}
-                        onClick={handleMenuClose}
+                        onClick={(e) => {
+                            menuItemProp.onClick?.(e);
+                            handleMenuClose();
+                        }}
                         {...menuItemProp}
                     >
                         {text && (
