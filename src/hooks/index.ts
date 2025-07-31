@@ -1,1 +1,1 @@
-export { useTopProducts } from './useTopProducts';
+export { useGetTopProducts } from './useGetTopProducts';

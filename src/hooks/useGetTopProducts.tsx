@@ -5,6 +5,6 @@ import { topProducts } from 'mocks/topProducts.mock';
  *
  * @returns An array of top products.
  */
-export const useTopProducts = () => ({
+export const useGetTopProducts = () => ({
     data: topProducts,
 });

@@ -6,43 +6,33 @@ import {
     Menu as MenuIcon,
     Notifications as NotificationsIcon,
 } from '@mui/icons-material';
-import {
-    AppBar,
-    Badge,
-    Box,
-    IconButton,
-    Stack,
-    Toolbar,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+import { AppBar, Badge, Box, IconButton, Stack, Toolbar } from '@mui/material';
 
 import Avatar from '@assets/images/avatar.webp';
 import LogoImg from '@assets/images/logo.webp';
-import { DynamicMenu, MuiLink, SearchBar } from '@components';
-import { type HeaderProps } from '@containers';
-import { useTopProducts } from '@hooks';
+import { Link, Menu, SearchBar } from '@components';
+import { useGetTopProducts } from '@hooks';
 import { type ProductType } from '@mocks/topProducts.mock';
 import { toSlug } from '@utils';
+
+import { type HeaderProps } from './Header.types';
 
 /**
  * Header container for the application.
  * Includes logo, search bar, notifications, and user menu.
- * @param {HeaderProps} props
  * @returns Complete header with hamburger, searchbar, logo, notifications and user menu
+ *
  * @example usage
  * ```tsx
- * <Header handleToggle = {sidebarToggleHandler} />
+ * <Header onSidebarToggle = {sidebarToggleHandler} />
  * ```
  */
-export const Header = ({ handleToggle }: HeaderProps) => {
+export const Header = ({ onSidebarToggle }: HeaderProps) => {
     const [searchValue, setSearchValue] = useState<null | string | ProductType>(
         null,
     );
     const navigate = useNavigate();
-    const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-    const { data: topProducts } = useTopProducts();
+    const { data: topProducts } = useGetTopProducts();
     /**
      * Handles user selection in the search bar.
      *
@@ -54,13 +44,10 @@ export const Header = ({ handleToggle }: HeaderProps) => {
         const productId = typeof value === 'string' ? toSlug(value) : value.id;
         void navigate(`/products/${productId}`);
     };
-    const user = {
-        name: 'Ayush Dwivedi',
-        email: 'abc@gmail.com',
-    };
 
     return (
         <AppBar
+            aria-label="Search and user controls"
             position="static"
             elevation={0}
             sx={{
@@ -69,32 +56,41 @@ export const Header = ({ handleToggle }: HeaderProps) => {
                 borderBottomColor: 'divider',
             }}
         >
-            <Toolbar>
+            <Toolbar
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}
+            >
                 <IconButton
                     size="large"
                     edge="start"
                     aria-label="open drawer"
                     sx={{
                         color: 'text.primary',
-                        display: { xs: 'block', md: 'none' },
+                        display: { xs: 'flex', md: 'none' },
+                        alignItems: 'center',
                     }}
-                    onClick={handleToggle}
+                    onClick={onSidebarToggle}
                 >
                     <MenuIcon />
                 </IconButton>
                 <Stack
-                    display={isDesktop ? 'flex' : 'none'}
+                    overflow={'visible'}
+                    sx={{
+                        display: { xs: 'none', md: 'flex' },
+                    }}
                     direction={'row'}
                     gap={4}
                 >
-                    <MuiLink to="/">
+                    <Link to="/" display={'flex'} alignItems={'center'}>
                         <Box
                             component="img"
                             src={LogoImg}
                             alt="Logo"
-                            sx={{ height: 32 }}
+                            height={32}
                         />
-                    </MuiLink>
+                    </Link>
                     <SearchBar
                         searchOptions={topProducts}
                         value={searchValue}
@@ -105,22 +101,23 @@ export const Header = ({ handleToggle }: HeaderProps) => {
                         }}
                     />
                 </Stack>
-                <Box flexGrow={1} />
-                <MuiLink to="/notifications">
-                    <IconButton
-                        size="large"
-                        aria-label="show 1 new notification"
+                <Stack direction={'row'} gap={2}>
+                    <Link
+                        to="/notifications"
+                        display={'flex'}
+                        alignItems={'center'}
                     >
                         <Badge badgeContent={1} color="error">
                             <NotificationsIcon sx={{ color: 'text.primary' }} />
                         </Badge>
-                    </IconButton>
-                </MuiLink>
-                <DynamicMenu
-                    items={[{ text: user.name }, { text: user.email }]}
-                >
-                    <Box component="img" src={Avatar} alt="User Profile" />
-                </DynamicMenu>
+                    </Link>
+                    <Menu
+                        items={[{ text: 'Star Wars' }, { text: 'abc@def.com' }]}
+                        menuId="user-menu"
+                    >
+                        <Box component="img" src={Avatar} alt="User Profile" />
+                    </Menu>
+                </Stack>
             </Toolbar>
         </AppBar>
     );

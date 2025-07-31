@@ -1,29 +1,28 @@
 import { useState } from 'react';
 
-import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import {
+    IconButton,
+    Menu as MuiMenu,
+    MenuItem,
+    Typography,
+} from '@mui/material';
 
-import { type DynamicMenuProps } from '@components';
+import { type MenuProps } from './Menu.types';
 
 /**
- * DynamicMenu component
+ * Menu component
  * Provides menu functionality with controller and list
  * @component
- * @param props - Props for DynamicMenu
- * @param props.items - Menu items to display
- * @param props.children - Children which will be used as controller
  * @returns Complete DynamicMenu component
+ *
  * @example usage
  * ```tsx
- * <DynamicMenu items={itemsList}>
- *  <ControllerComponent>
- * </DynamicMenu>
+ * <Menu items={itemsList}>
+ *  <Trigger>
+ * <Menu>
  * ```
  */
-export const DynamicMenu = ({
-    items,
-    children,
-    ...restProps
-}: DynamicMenuProps) => {
+export const Menu = ({ items, menuId, children, ...restProps }: MenuProps) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const handleMenuClose = () => {
         setAnchorEl(null);
@@ -33,11 +32,10 @@ export const DynamicMenu = ({
     };
 
     const isMenuOpen = Boolean(anchorEl);
-    const menuId = 'dynamic-menu';
 
     return (
         <>
-            <Menu
+            <MuiMenu
                 anchorEl={anchorEl}
                 id={menuId}
                 keepMounted
@@ -46,13 +44,17 @@ export const DynamicMenu = ({
                 {...restProps}
             >
                 {items.map(({ text, ...menuItemProp }, index) => (
-                    <MenuItem key={index} {...menuItemProp}>
+                    <MenuItem
+                        key={index}
+                        onClick={handleMenuClose}
+                        {...menuItemProp}
+                    >
                         {text && (
                             <Typography variant="body1">{text}</Typography>
                         )}
                     </MenuItem>
                 ))}
-            </Menu>
+            </MuiMenu>
             <IconButton onClick={handleMenuOpen} aria-controls={menuId}>
                 {children}
             </IconButton>

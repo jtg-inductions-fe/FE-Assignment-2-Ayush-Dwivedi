@@ -1,2 +1,1 @@
-export * from './Header/index';
-export { Sidebar } from './Sidebar';
+export * from './Header';

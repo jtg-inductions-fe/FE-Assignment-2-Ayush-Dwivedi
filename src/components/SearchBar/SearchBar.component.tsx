@@ -1,28 +1,23 @@
 import { Search as SearchIcon } from '@mui/icons-material';
-import { Box, TextField, Typography } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
 
-import { StyledAutocomplete } from '@components';
-import { type SearchBarProps } from '@components';
+import { StyledAutocomplete } from './SearchBar.styles';
+import { type SearchBarProps } from './SearchBar.types';
 
 /**
  * SearchBar component
  * Provides searchbar with autocomplete functionality.
  * @component
- * @param props - Props for SearchBar.
- * @param props.searchOptions - List of options to search from.
- * @param props.value - Current selected or typed value.
- * @param props.handleOnChange - Called when value changes.
  * @returns Complete searchbar with icon and autocomplete functionalities
+ *
  * @example usage
  * ```tsx
- * <Header>
  *  <SearchBar
  *      searchOptions={options}
  *      value={searchValue}
  *      handleOnChange={handleSearch}
  *      getOptionLabel={(option) => option.title;}
  *  />
- * </Header>
  * ```
  */
 export const SearchBar = <OptionType,>({
@@ -42,18 +37,18 @@ export const SearchBar = <OptionType,>({
         size="small"
         renderInput={(params) => (
             <TextField
+                placeholder={'Search'}
+                slotProps={{
+                    input: {
+                        ...params.InputProps,
+                        startAdornment: (
+                            <InputAdornment position="end">
+                                <SearchIcon fontSize={'small'} />
+                            </InputAdornment>
+                        ),
+                    },
+                }}
                 {...params}
-                label={
-                    <Box display="flex" alignItems="center" gap={1}>
-                        <SearchIcon fontSize="small" />
-                        <Typography
-                            variant="body1"
-                            fontWeight={'fontWeightRegular'}
-                        >
-                            Search
-                        </Typography>
-                    </Box>
-                }
             />
         )}
         {...restProps}

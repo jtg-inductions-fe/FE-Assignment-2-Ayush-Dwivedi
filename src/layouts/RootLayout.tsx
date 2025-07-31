@@ -1,15 +1,15 @@
-import * as React from 'react';
+import { useState } from 'react';
 
 import { Outlet } from 'react-router';
 
-import { Header, Sidebar } from '@containers';
+import { Sidebar } from '@components';
+import { Header } from '@containers';
 
 /**
  * RootLayout component
- *
  * Provides the main application layout structure with a header, main content area (using React Router's Outlet for nested routes), and a footer.
- *
  * @component
+ *
  * @example usage
  * ```tsx
  * <Route path="/" element={<RootLayout />}>
@@ -18,13 +18,14 @@ import { Header, Sidebar } from '@containers';
  * ```
  */
 export const RootLayout = () => {
-    const [isSidebarOpen, setSidebarOpen] = React.useState<boolean>(false);
+    const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
+
     const handleSidebarToggle = () => {
         setSidebarOpen((prev) => !prev);
     };
     return (
         <>
-            <Header handleToggle={handleSidebarToggle} />
+            <Header onSidebarToggle={handleSidebarToggle} />
             <Sidebar open={isSidebarOpen} />
             <main>
                 <Outlet />

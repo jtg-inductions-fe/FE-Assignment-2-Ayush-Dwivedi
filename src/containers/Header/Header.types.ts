@@ -1,4 +1,6 @@
 export type HeaderProps = {
-    /** Function to handle sidebar toggle, used on hamburger onClick */
-    handleToggle: () => void;
+    /**
+     * Function to handle sidebar toggle, used on hamburger onClick
+     */
+    onSidebarToggle: () => void;
 };
