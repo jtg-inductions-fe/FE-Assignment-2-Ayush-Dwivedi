@@ -5,7 +5,7 @@ import { COLORS } from '@constant';
 /* Custom Palette */
 export const palette: PaletteOptions = {
     primary: {
-        main: COLORS.GREEN[900],
+        main: COLORS.GREEN[500],
     },
     error: {
         main: COLORS.RED[800],

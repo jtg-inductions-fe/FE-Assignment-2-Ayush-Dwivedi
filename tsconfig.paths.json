@@ -3,12 +3,16 @@
         "baseUrl": "./src",
         "paths": {
             "@assets/*": ["assets/*"],
+            "@mocks/*": ["mocks/*"],
             "@constant": ["constant/index"],
             "@theme": ["theme/index"],
             "@router": ["router/index"],
             "@layouts": ["layouts/index"],
             "@pages": ["pages/index"],
-            "@components": ["components/index"]
+            "@components": ["components/index"],
+            "@containers": ["containers/index"],
+            "@utils": ["utils/index"],
+            "@hooks": ["hooks/index"]
         }
     }
 }

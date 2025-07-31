@@ -94,6 +94,10 @@ export default tseslint.config(
                     fixStyle: 'inline-type-imports',
                 },
             ],
+            'react/jsx-curly-brace-presence': [
+                'error',
+                { props: 'never', children: 'never' },
+            ],
         },
         /* Specify React version for eslint-plugin-react */
         settings: {
