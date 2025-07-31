@@ -25,7 +25,10 @@ export const RootLayout = () => {
     };
     return (
         <>
-            <Header onSidebarToggle={handleSidebarToggle} />
+            <Header
+                isSidebarOpen={isSidebarOpen}
+                onSidebarToggle={handleSidebarToggle}
+            />
             <Sidebar open={isSidebarOpen} />
             <main>
                 <Outlet />

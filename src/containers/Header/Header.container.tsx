@@ -35,7 +35,7 @@ import { type HeaderProps } from './Header.types';
  * <Header onSidebarToggle = {sidebarToggleHandler} />
  * ```
  */
-export const Header = ({ onSidebarToggle }: HeaderProps) => {
+export const Header = ({ onSidebarToggle, isSidebarOpen }: HeaderProps) => {
     const [searchValue, setSearchValue] = useState<null | string | ProductType>(
         null,
     );
@@ -57,7 +57,7 @@ export const Header = ({ onSidebarToggle }: HeaderProps) => {
 
     return (
         <AppBar
-            aria-label="Search and user controls"
+            aria-label="Admin dashboard AppBar"
             position="static"
             elevation={0}
             sx={{
@@ -75,7 +75,7 @@ export const Header = ({ onSidebarToggle }: HeaderProps) => {
                 <IconButton
                     size="large"
                     edge="start"
-                    aria-label="open drawer"
+                    aria-label={isSidebarOpen ? 'Close drawer' : 'Open drawer'}
                     sx={{
                         color: 'text.primary',
                         display: { xs: 'flex', md: 'none' },
