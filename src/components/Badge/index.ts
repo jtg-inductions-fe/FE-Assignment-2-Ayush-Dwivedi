@@ -1,0 +1,1 @@
+export { StyledErrorBadge } from './Badge';
