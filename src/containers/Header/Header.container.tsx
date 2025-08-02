@@ -6,23 +6,16 @@ import {
     Menu as MenuIcon,
     Notifications as NotificationsIcon,
 } from '@mui/icons-material';
-import {
-    AppBar,
-    Avatar,
-    Badge,
-    Box,
-    IconButton,
-    Stack,
-    Toolbar,
-} from '@mui/material';
+import { Avatar, Box, IconButton, Stack, Toolbar } from '@mui/material';
 
 import userAvatar from '@assets/images/avatar.webp';
 import LogoImg from '@assets/images/logo.webp';
-import { Link, Menu, SearchBar } from '@components';
+import { Link, Menu, SearchBar, StyledErrorBadge } from '@components';
 import { useGetTopProducts } from '@hooks';
 import { type ProductType } from '@mocks/topProducts.mock';
 import { toSlug } from '@utils';
 
+import { StyledAppBar } from './Header.styles';
 import { type HeaderProps } from './Header.types';
 
 /**
@@ -56,15 +49,10 @@ export const Header = ({ onSidebarToggle, isSidebarOpen }: HeaderProps) => {
     };
 
     return (
-        <AppBar
+        <StyledAppBar
+            position="fixed"
             aria-label="Admin dashboard AppBar"
-            position="static"
             elevation={0}
-            sx={{
-                backgroundColor: 'background.paper',
-                borderBottom: '1px solid',
-                borderBottomColor: 'divider',
-            }}
         >
             <Toolbar
                 sx={{
@@ -116,9 +104,9 @@ export const Header = ({ onSidebarToggle, isSidebarOpen }: HeaderProps) => {
                         display="flex"
                         alignItems="center"
                     >
-                        <Badge badgeContent={1} color="error">
+                        <StyledErrorBadge badgeContent={1}>
                             <NotificationsIcon sx={{ color: 'text.primary' }} />
-                        </Badge>
+                        </StyledErrorBadge>
                     </Link>
                     <Menu
                         items={[
@@ -133,6 +121,6 @@ export const Header = ({ onSidebarToggle, isSidebarOpen }: HeaderProps) => {
                     </Menu>
                 </Stack>
             </Toolbar>
-        </AppBar>
+        </StyledAppBar>
     );
 };
