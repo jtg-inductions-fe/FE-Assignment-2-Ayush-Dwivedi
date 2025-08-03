@@ -1,12 +1,8 @@
 import {
-    PublicOutlined as PublicIcon,
-    SettingsOutlined as SettingsIcon,
-    TuneOutlined as TuneIcon,
-} from '@mui/icons-material';
-import {
     Divider,
     Drawer,
     List,
+    ListItem,
     Stack,
     Toolbar,
     useMediaQuery,
@@ -15,7 +11,7 @@ import {
 import { Link } from '@components';
 import { SIDEBAR_WIDTH } from '@constant';
 
-import { sidebarList } from './Sidebar.config';
+import { sidebarBottomLinks, sidebarList } from './Sidebar.config';
 import { type SidebarProps } from './Sidebar.types';
 import { SidebarTile } from './SidebarTile.component';
 
@@ -37,6 +33,7 @@ export const Sidebar = ({
     handleSidebarToggle,
 }: SidebarProps) => {
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
     return (
         <Drawer
             open={isSidebarOpen}
@@ -55,7 +52,7 @@ export const Sidebar = ({
             >
                 <List>
                     {sidebarList.map((item, index) =>
-                        item.purpose === 'listItem' ? (
+                        item.type === 'listItem' ? (
                             <SidebarTile
                                 {...item}
                                 onClick={handleSidebarToggle}
@@ -66,17 +63,21 @@ export const Sidebar = ({
                         ),
                     )}
                 </List>
-                <Stack direction="row" justifyContent="center" gap={8}>
-                    <Link to="/customize">
-                        <TuneIcon sx={{ color: 'text.primary' }} />
-                    </Link>
-                    <Link to="/explore">
-                        <PublicIcon sx={{ color: 'text.primary' }} />
-                    </Link>
-                    <Link to="/settings">
-                        <SettingsIcon sx={{ color: 'text.primary' }} />
-                    </Link>
-                </Stack>
+                <List
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        flexWrap: 'wrap',
+                    }}
+                >
+                    {sidebarBottomLinks.map((item, index) => (
+                        <ListItem key={index} sx={{ width: 'fit-content' }}>
+                            <Link to={item.route} onClick={handleSidebarToggle}>
+                                <item.icon sx={{ color: 'text.primary' }} />
+                            </Link>
+                        </ListItem>
+                    ))}
+                </List>
             </Stack>
         </Drawer>
     );

@@ -1,1 +1,1 @@
-export { StyledErrorBadge } from './Badge';
+export { StyledBadge } from './Badge';

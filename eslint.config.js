@@ -98,6 +98,7 @@ export default tseslint.config(
                 'error',
                 { props: 'never', children: 'never' },
             ],
+            'newline-before-return': 'error',
         },
         /* Specify React version for eslint-plugin-react */
         settings: {

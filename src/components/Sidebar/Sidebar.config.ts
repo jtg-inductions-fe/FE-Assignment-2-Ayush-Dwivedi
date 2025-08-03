@@ -5,21 +5,27 @@ import {
     Lock as LockIcon,
     MoveToInbox as MoveToInboxIcon,
     PieChart as PieChartIcon,
+    PublicOutlined as PublicIcon,
+    SettingsOutlined as SettingsIcon,
     ShoppingBag as ShoppingBagIcon,
     Support as SupportIcon,
+    TuneOutlined as TuneIcon,
 } from '@mui/icons-material';
 
-import { type SidebarTileItemType } from './Sidebar.types';
+import type {
+    SidebarBottomLinkType,
+    SidebarTileItemType,
+} from './Sidebar.types';
 
 export const sidebarList: SidebarTileItemType[] = [
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Overview',
         icon: PieChartIcon,
         route: '/',
     },
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Pages',
         icon: FileCopyIcon,
         route: '/pages',
@@ -30,7 +36,7 @@ export const sidebarList: SidebarTileItemType[] = [
         ],
     },
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Sales',
         icon: ShoppingBagIcon,
         route: '/sales',
@@ -41,35 +47,50 @@ export const sidebarList: SidebarTileItemType[] = [
         ],
     },
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Messages',
         icon: MoveToInboxIcon,
         route: '/messages',
-        badge: 1,
+        notificationCount: 1,
     },
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Authentication',
         icon: LockIcon,
         route: '/auth',
     },
-    { purpose: 'divider' },
+    { type: 'divider' },
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Docs',
         icon: AssignmentIcon,
         route: '/docs',
     },
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Components',
         icon: HorizontalSplitIcon,
         route: '/components',
     },
     {
-        purpose: 'listItem',
+        type: 'listItem',
         label: 'Help',
         icon: SupportIcon,
         route: '/help',
+    },
+];
+
+export const sidebarBottomLinks: SidebarBottomLinkType[] = [
+    {
+        icon: TuneIcon,
+        route: '/explore',
+    },
+    {
+        icon: PublicIcon,
+        route: '/customize',
+    },
+    {
+        icon: SettingsIcon,
+        route: '/settings',
     },
 ];

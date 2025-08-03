@@ -14,7 +14,7 @@ import {
     ListItemText,
 } from '@mui/material';
 
-import { StyledErrorBadge } from '@components';
+import { StyledBadge } from '@components';
 
 import { type SidebarTileProps } from './Sidebar.types';
 
@@ -28,17 +28,22 @@ import { type SidebarTileProps } from './Sidebar.types';
  * <SidebarTile {...sidebarTileItem} onclick={handleClick}/>
  * ```
  */
-export const SidebarTile = (props: SidebarTileProps) => {
-    const [isCollapseOpen, setCollapseOpen] = useState<boolean>(false);
+export const SidebarTile = ({
+    icon: PropsIcon,
+    label,
+    route,
+    notificationCount,
+    children,
+    onClick,
+}: SidebarTileProps) => {
+    const [isCollapsed, setCollapseOpen] = useState<boolean>(true);
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    if (props.purpose === 'divider') {
-        return;
-    }
-    const { icon: PropsIcon, label, route, badge, children, onClick } = props;
     const isActive =
         route === pathname ||
         children?.some((child) => child.route === pathname);
+    const NESTED_ITEM_PADDING = 18;
+
     const handleCollapseClick = () => {
         setCollapseOpen((prev) => !prev);
     };
@@ -46,31 +51,36 @@ export const SidebarTile = (props: SidebarTileProps) => {
         void navigate(targetRoute);
         onClick();
     };
+
     return (
         <>
             <ListItemButton
+                role={children ? 'button' : 'link'}
                 onClick={
                     children
                         ? handleCollapseClick
                         : () => handleButtonClick(route)
                 }
-                selected={isCollapseOpen}
+                selected={!isCollapsed}
+                sx={{
+                    color: isActive ? 'primary.main' : 'text.primary',
+                }}
             >
-                <ListItemIcon sx={{ color: 'text.primary' }}>
-                    <PropsIcon color={isActive ? 'primary' : 'inherit'} />
+                <ListItemIcon>
+                    <PropsIcon />
                 </ListItemIcon>
                 <ListItemText
                     primary={label}
                     slotProps={{
                         primary: {
-                            color: isActive ? 'primary' : 'text.primary',
                             fontWeight: 'fontWeightMedium',
                         },
                     }}
                 />
-                {!children && badge && (
-                    <StyledErrorBadge
-                        badgeContent={badge}
+                {!children && notificationCount && (
+                    <StyledBadge
+                        badgeContent={notificationCount}
+                        badgeVariant="error"
                         sx={{
                             '& .MuiBadge-badge': {
                                 transform: 'translateY(-50%)',
@@ -79,36 +89,39 @@ export const SidebarTile = (props: SidebarTileProps) => {
                     />
                 )}
                 {children &&
-                    (isCollapseOpen ? (
-                        <ExpandLessIcon
+                    (isCollapsed ? (
+                        <ExpandMoreIcon
                             color={isActive ? 'primary' : 'inherit'}
                         />
                     ) : (
-                        <ExpandMoreIcon
+                        <ExpandLessIcon
                             color={isActive ? 'primary' : 'inherit'}
                         />
                     ))}
             </ListItemButton>
             {children && (
-                <Collapse in={isCollapseOpen} timeout="auto" unmountOnExit>
+                <Collapse in={!isCollapsed} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         {children.map((childItem, index) => (
                             <ListItemButton
                                 onClick={() =>
                                     handleButtonClick(childItem.route)
                                 }
+                                role="link"
                                 key={index}
-                                sx={{ pl: 18 }}
+                                sx={{
+                                    pl: NESTED_ITEM_PADDING,
+                                    color:
+                                        pathname === childItem.route
+                                            ? 'primary.main'
+                                            : 'text.primary',
+                                }}
                             >
                                 <ListItemText
                                     primary={childItem.label}
                                     slotProps={{
                                         primary: {
                                             fontWeight: 'fontWeightMedium',
-                                            color:
-                                                pathname === childItem.route
-                                                    ? 'primary'
-                                                    : 'text.primary',
                                         },
                                     }}
                                 />

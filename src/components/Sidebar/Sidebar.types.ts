@@ -5,6 +5,7 @@ export type SidebarProps = {
      * Whether the sidebar is currently open.
      */
     isSidebarOpen: boolean;
+
     /**
      * Function to toggle the sidebar open or closed.
      */
@@ -16,11 +17,13 @@ export type SidebarTileItemType =
           /**
            * Indicates the item is a list item.
            */
-          purpose: 'listItem';
+          type: 'listItem';
+
           /**
            * Label text to display for the sidebar item.
            */
           label: string;
+
           /**
            * Route path to navigate to when the item is clicked.
            */
@@ -30,10 +33,12 @@ export type SidebarTileItemType =
            * MUI icon component to display alongside the label.
            */
           icon: SvgIconComponent;
+
           /**
            * Badge number to display beside label.
            */
-          badge?: number;
+          notificationCount?: number;
+
           /**
            * Optional child links under the current item.
            */
@@ -42,6 +47,7 @@ export type SidebarTileItemType =
                * Label text for the child item.
                */
               label: string;
+
               /**
                * Route path for the child item.
                */
@@ -52,12 +58,27 @@ export type SidebarTileItemType =
           /**
            * Indicates the item is a divider (a visual separator).
            */
-          purpose: 'divider';
+          type: 'divider';
       };
 
-export type SidebarTileProps = SidebarTileItemType & {
+export type SidebarTileProps = Extract<
+    SidebarTileItemType,
+    { type: 'listItem' }
+> & {
     /**
      * Function to handle click events on the sidebar tile.
      */
     onClick: () => void;
+};
+
+export type SidebarBottomLinkType = {
+    /**
+     * MuiIcon component to display at bottom
+     */
+    icon: SvgIconComponent;
+
+    /**
+     * Route to navigate on click
+     */
+    route: string;
 };

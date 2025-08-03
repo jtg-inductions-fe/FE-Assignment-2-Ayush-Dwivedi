@@ -10,7 +10,7 @@ import { Avatar, Box, IconButton, Stack, Toolbar } from '@mui/material';
 
 import userAvatar from '@assets/images/avatar.webp';
 import LogoImg from '@assets/images/logo.webp';
-import { Link, Menu, SearchBar, StyledErrorBadge } from '@components';
+import { Link, Menu, SearchBar, StyledBadge } from '@components';
 import { useGetTopProducts } from '@hooks';
 import { type ProductType } from '@mocks/topProducts.mock';
 import { toSlug } from '@utils';
@@ -94,6 +94,7 @@ export const Header = ({ onSidebarToggle, isSidebarOpen }: HeaderProps) => {
                         handleOnChange={handleSearch}
                         getOptionLabel={(option) => {
                             if (typeof option === 'string') return option;
+
                             return option.title;
                         }}
                     />
@@ -104,9 +105,9 @@ export const Header = ({ onSidebarToggle, isSidebarOpen }: HeaderProps) => {
                         display="flex"
                         alignItems="center"
                     >
-                        <StyledErrorBadge badgeContent={1}>
+                        <StyledBadge badgeVariant="error" badgeContent={1}>
                             <NotificationsIcon sx={{ color: 'text.primary' }} />
-                        </StyledErrorBadge>
+                        </StyledBadge>
                     </Link>
                     <Menu
                         items={[

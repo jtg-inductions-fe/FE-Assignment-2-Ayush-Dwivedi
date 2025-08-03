@@ -12,6 +12,7 @@ export type MenuProps = {
                * No text when children are passed to be displayed in list item
                */
               text?: never;
+
               /**
                * Jsx block to be displayed in list item
                */
@@ -22,6 +23,7 @@ export type MenuProps = {
                * Text to be displayed in list item
                */
               text: string;
+
               /**
                * No children when text is passed to be displayed in list item
                */

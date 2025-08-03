@@ -1,8 +1,18 @@
 import { Badge, styled } from '@mui/material';
 
-export const StyledErrorBadge = styled(Badge)(({ theme: { palette } }) => ({
+import { type BadgeProps } from './Badge.types';
+
+export const StyledBadge = styled(Badge, {
+    shouldForwardProp: (prop) => prop !== 'badgeVariant',
+})<BadgeProps>(({ badgeVariant, theme: { palette } }) => ({
     '& .MuiBadge-badge': {
-        color: palette.error.main,
-        backgroundColor: palette.error.light,
+        color:
+            badgeVariant === 'error'
+                ? palette.error.main
+                : palette.success.main,
+        backgroundColor:
+            badgeVariant === 'error'
+                ? palette.error.light
+                : palette.success.light,
     },
-})) as typeof Badge;
+}));

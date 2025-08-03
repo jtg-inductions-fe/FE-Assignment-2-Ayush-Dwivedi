@@ -5,10 +5,12 @@ export type SearchBarProps<OptionType> = {
      * List of options to search from
      */
     searchOptions: OptionType[];
+
     /**
      * Value typed in search bar
      */
     value: OptionType | string | null;
+
     /**
      * Handler function for onChange
      */

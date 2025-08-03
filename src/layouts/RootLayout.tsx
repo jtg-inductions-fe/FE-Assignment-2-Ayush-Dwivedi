@@ -25,6 +25,7 @@ export const RootLayout = () => {
     const handleSidebarToggle = () => {
         setSidebarOpen((prev) => !prev);
     };
+
     return (
         <Grid height="100vh">
             <Grid size={12} height={HEADER_HEIGHT}>
