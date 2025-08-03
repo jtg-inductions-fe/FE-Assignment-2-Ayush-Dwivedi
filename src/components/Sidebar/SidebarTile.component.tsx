@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 
 import {
     ExpandLess as ExpandLessIcon,
@@ -14,7 +14,7 @@ import {
     ListItemText,
 } from '@mui/material';
 
-import { StyledBadge } from '@components';
+import { Link, StyledBadge } from '@components';
 
 import { type SidebarTileProps } from './Sidebar.types';
 
@@ -37,7 +37,6 @@ export const SidebarTile = ({
     onClick,
 }: SidebarTileProps) => {
     const [isCollapsed, setCollapseOpen] = useState<boolean>(true);
-    const navigate = useNavigate();
     const { pathname } = useLocation();
     const isActive =
         route === pathname ||
@@ -47,23 +46,17 @@ export const SidebarTile = ({
     const handleCollapseClick = () => {
         setCollapseOpen((prev) => !prev);
     };
-    const handleButtonClick = (targetRoute: string) => {
-        void navigate(targetRoute);
-        onClick();
-    };
 
     return (
         <>
             <ListItemButton
-                role={children ? 'button' : 'link'}
-                onClick={
-                    children
-                        ? handleCollapseClick
-                        : () => handleButtonClick(route)
-                }
+                component={children ? 'button' : Link}
+                to={!children ? route : undefined}
+                onClick={children ? handleCollapseClick : onClick}
                 selected={!isCollapsed}
                 sx={{
                     color: isActive ? 'primary.main' : 'text.primary',
+                    width: '100%',
                 }}
             >
                 <ListItemIcon>
@@ -104,10 +97,9 @@ export const SidebarTile = ({
                     <List component="div" disablePadding>
                         {children.map((childItem, index) => (
                             <ListItemButton
-                                onClick={() =>
-                                    handleButtonClick(childItem.route)
-                                }
-                                role="link"
+                                component={Link}
+                                to={childItem.route}
+                                onClick={onClick}
                                 key={index}
                                 sx={{
                                     pl: NESTED_ITEM_PADDING,
