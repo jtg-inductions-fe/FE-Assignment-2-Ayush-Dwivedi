@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useLocation } from 'react-router';
 
@@ -36,15 +36,18 @@ export const SidebarTile = ({
     children,
     onClick,
 }: SidebarTileProps) => {
-    const [isCollapsed, setCollapseOpen] = useState<boolean>(true);
+    const [isCollapsed, setCollapsed] = useState<boolean>(true);
     const { pathname } = useLocation();
-    const isActive =
-        route === pathname ||
-        children?.some((child) => child.route === pathname);
+    const isActive = useMemo(
+        () =>
+            route === pathname ||
+            children?.some((child) => child.route === pathname),
+        [route, pathname, children],
+    );
     const NESTED_ITEM_PADDING = 18;
 
     const handleCollapseClick = () => {
-        setCollapseOpen((prev) => !prev);
+        setCollapsed((prev) => !prev);
     };
 
     return (
