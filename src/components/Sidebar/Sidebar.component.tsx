@@ -49,6 +49,7 @@ export const Sidebar = ({
         >
             <Toolbar />
             <Stack
+                component="nav"
                 justifyContent="space-between"
                 height="100%"
                 paddingBottom={4}
