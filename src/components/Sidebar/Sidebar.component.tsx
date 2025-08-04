@@ -63,7 +63,7 @@ export const Sidebar = ({
                                 key={item.label}
                             />
                         ) : (
-                            <Divider key={index} />
+                            <Divider aria-hidden={true} key={index} />
                         ),
                     )}
                 </List>
