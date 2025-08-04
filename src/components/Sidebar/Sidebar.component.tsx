@@ -11,7 +11,6 @@ import {
 import { Link } from '@components';
 import { SIDEBAR_WIDTH } from '@constant';
 
-import { sidebarBottomLinks, sidebarList } from './Sidebar.config';
 import { type SidebarProps } from './Sidebar.types';
 import { SidebarTile } from './SidebarTile.component';
 
@@ -25,12 +24,16 @@ import { SidebarTile } from './SidebarTile.component';
  * <Sidebar
  *       isSidebarOpen={isSidebarOpen}
  *       handleSidebarToggle={handleSidebarToggle}
+ *       navList={sidebarConfig}
+ *       bottomLinksList={bottomLinksConfig}
  *   />
  * ```
  */
 export const Sidebar = ({
     isSidebarOpen,
     handleSidebarToggle,
+    navList,
+    bottomLinksList,
 }: SidebarProps) => {
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
@@ -51,7 +54,7 @@ export const Sidebar = ({
                 paddingBottom={4}
             >
                 <List>
-                    {sidebarList.map((item, index) =>
+                    {navList.map((item, index) =>
                         item.type === 'listItem' ? (
                             <SidebarTile
                                 {...item}
@@ -70,7 +73,7 @@ export const Sidebar = ({
                         flexWrap: 'wrap',
                     }}
                 >
-                    {sidebarBottomLinks.map((item, index) => (
+                    {bottomLinksList.map((item, index) => (
                         <ListItem key={index} sx={{ width: 'fit-content' }}>
                             <Link to={item.route} onClick={handleSidebarToggle}>
                                 <item.icon sx={{ color: 'text.primary' }} />

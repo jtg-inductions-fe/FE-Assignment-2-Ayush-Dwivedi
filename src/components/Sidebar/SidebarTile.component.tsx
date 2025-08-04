@@ -9,6 +9,7 @@ import {
 import {
     Collapse,
     List,
+    ListItem,
     ListItemButton,
     ListItemIcon,
     ListItemText,
@@ -35,6 +36,7 @@ export const SidebarTile = ({
     notificationCount,
     children,
     onClick,
+    isChild,
 }: SidebarTileProps) => {
     const [isCollapsed, setCollapsed] = useState<boolean>(true);
     const { pathname } = useLocation();
@@ -44,28 +46,37 @@ export const SidebarTile = ({
             children?.some((child) => child.route === pathname),
         [route, pathname, children],
     );
-    const NESTED_ITEM_PADDING = 18;
 
     const handleCollapseClick = () => {
         setCollapsed((prev) => !prev);
     };
 
     return (
-        <>
+        <ListItem disablePadding sx={{ paddingInline: 2, display: 'block' }}>
             <ListItemButton
-                component={children ? 'button' : Link}
-                to={!children ? route : undefined}
-                onClick={children ? handleCollapseClick : onClick}
+                {...(children
+                    ? {
+                          onClick: handleCollapseClick,
+                      }
+                    : {
+                          component: Link,
+                          to: route,
+                          onClick: onClick,
+                      })}
                 selected={!isCollapsed}
                 sx={{
                     color: isActive ? 'primary.main' : 'text.primary',
                     width: '100%',
+                    borderRadius: 3,
                 }}
             >
-                <ListItemIcon>
-                    <PropsIcon />
-                </ListItemIcon>
+                {PropsIcon && (
+                    <ListItemIcon>
+                        <PropsIcon />
+                    </ListItemIcon>
+                )}
                 <ListItemText
+                    inset={isChild}
                     primary={label}
                     slotProps={{
                         primary: {
@@ -90,33 +101,17 @@ export const SidebarTile = ({
             {children && (
                 <Collapse in={!isCollapsed} timeout="auto" unmountOnExit>
                     <List disablePadding>
-                        {children.map((childItem, index) => (
-                            <ListItemButton
-                                component={Link}
-                                to={childItem.route}
+                        {children.map((childItem) => (
+                            <SidebarTile
+                                {...childItem}
                                 onClick={onClick}
-                                key={index}
-                                sx={{
-                                    pl: NESTED_ITEM_PADDING,
-                                    color:
-                                        pathname === childItem.route
-                                            ? 'primary.main'
-                                            : 'text.primary',
-                                }}
-                            >
-                                <ListItemText
-                                    primary={childItem.label}
-                                    slotProps={{
-                                        primary: {
-                                            fontWeight: 'fontWeightMedium',
-                                        },
-                                    }}
-                                />
-                            </ListItemButton>
+                                key={childItem.label}
+                                isChild
+                            />
                         ))}
                     </List>
                 </Collapse>
             )}
-        </>
+        </ListItem>
     );
 };

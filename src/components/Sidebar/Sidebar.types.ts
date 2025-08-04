@@ -10,6 +10,16 @@ export type SidebarProps = {
      * Function to toggle the sidebar open or closed.
      */
     handleSidebarToggle: () => void;
+
+    /**
+     * List of items for sidebar navigation links or buttons
+     */
+    navList: SidebarTileItemType[];
+
+    /**
+     * Utility icons and links at bottom of sidebar
+     */
+    bottomLinksList: SidebarBottomLinkType[];
 };
 
 export type SidebarTileItemType =
@@ -32,7 +42,7 @@ export type SidebarTileItemType =
           /**
            * MUI icon component to display alongside the label.
            */
-          icon: SvgIconComponent;
+          icon?: SvgIconComponent;
 
           /**
            * Badge number to display beside label.
@@ -40,19 +50,14 @@ export type SidebarTileItemType =
           notificationCount?: number;
 
           /**
+           * Tells whether a SidebarItem is child or parent
+           */
+          isChild: boolean;
+
+          /**
            * Optional child links under the current item.
            */
-          children?: {
-              /**
-               * Label text for the child item.
-               */
-              label: string;
-
-              /**
-               * Route path for the child item.
-               */
-              route: string;
-          }[];
+          children?: Extract<SidebarTileItemType, { type: 'listItem' }>[];
       }
     | {
           /**

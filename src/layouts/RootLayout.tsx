@@ -5,7 +5,12 @@ import { Outlet } from 'react-router';
 import { Grid2 as Grid } from '@mui/material';
 
 import { Sidebar } from '@components';
-import { HEADER_HEIGHT, SIDEBAR_WIDTH } from '@constant';
+import {
+    HEADER_HEIGHT,
+    SIDEBAR_WIDTH,
+    sidebarBottomLinks,
+    sidebarList,
+} from '@constant';
 import { Header } from '@containers';
 
 /**
@@ -39,6 +44,8 @@ export const RootLayout = () => {
                     <Sidebar
                         isSidebarOpen={isSidebarOpen}
                         handleSidebarToggle={handleSidebarToggle}
+                        navList={sidebarList}
+                        bottomLinksList={sidebarBottomLinks}
                     />
                 </Grid>
                 <Grid size="grow">

@@ -12,10 +12,7 @@ import {
     TuneOutlined as TuneIcon,
 } from '@mui/icons-material';
 
-import type {
-    SidebarBottomLinkType,
-    SidebarTileItemType,
-} from './Sidebar.types';
+import type { SidebarBottomLinkType, SidebarTileItemType } from '@components';
 
 export const sidebarList: SidebarTileItemType[] = [
     {
@@ -23,16 +20,33 @@ export const sidebarList: SidebarTileItemType[] = [
         label: 'Overview',
         icon: PieChartIcon,
         route: '/',
+        isChild: false,
     },
     {
         type: 'listItem',
         label: 'Pages',
         icon: FileCopyIcon,
         route: '/pages',
+        isChild: false,
         children: [
-            { label: 'Product List', route: '/pages/products' },
-            { label: 'Billing', route: '/pages/billing' },
-            { label: 'Invoice', route: '/pages/invoice' },
+            {
+                type: 'listItem',
+                label: 'Product List',
+                route: '/pages/products',
+                isChild: true,
+            },
+            {
+                type: 'listItem',
+                label: 'Billing',
+                route: '/pages/billing',
+                isChild: true,
+            },
+            {
+                type: 'listItem',
+                label: 'Invoice',
+                route: '/pages/invoice',
+                isChild: true,
+            },
         ],
     },
     {
@@ -40,10 +54,26 @@ export const sidebarList: SidebarTileItemType[] = [
         label: 'Sales',
         icon: ShoppingBagIcon,
         route: '/sales',
+        isChild: false,
         children: [
-            { label: 'Product List', route: '/sales/products' },
-            { label: 'Billing', route: '/sales/billing' },
-            { label: 'Invoice', route: '/sales/invoice' },
+            {
+                type: 'listItem',
+                label: 'Product List',
+                route: '/sales/products',
+                isChild: true,
+            },
+            {
+                type: 'listItem',
+                label: 'Billing',
+                route: '/sales/billing',
+                isChild: true,
+            },
+            {
+                type: 'listItem',
+                label: 'Invoice',
+                route: '/sales/invoice',
+                isChild: true,
+            },
         ],
     },
     {
@@ -51,6 +81,7 @@ export const sidebarList: SidebarTileItemType[] = [
         label: 'Messages',
         icon: MoveToInboxIcon,
         route: '/messages',
+        isChild: false,
         notificationCount: 1,
     },
     {
@@ -58,6 +89,7 @@ export const sidebarList: SidebarTileItemType[] = [
         label: 'Authentication',
         icon: LockIcon,
         route: '/auth',
+        isChild: false,
     },
     { type: 'divider' },
     {
@@ -65,18 +97,21 @@ export const sidebarList: SidebarTileItemType[] = [
         label: 'Docs',
         icon: AssignmentIcon,
         route: '/docs',
+        isChild: false,
     },
     {
         type: 'listItem',
         label: 'Components',
         icon: HorizontalSplitIcon,
         route: '/components',
+        isChild: false,
     },
     {
         type: 'listItem',
         label: 'Help',
         icon: SupportIcon,
         route: '/help',
+        isChild: false,
     },
 ];
 
