@@ -85,19 +85,11 @@ export const SidebarTile = ({
                     />
                 )}
                 {children &&
-                    (isCollapsed ? (
-                        <ExpandMoreIcon
-                            color={isActive ? 'primary' : 'inherit'}
-                        />
-                    ) : (
-                        <ExpandLessIcon
-                            color={isActive ? 'primary' : 'inherit'}
-                        />
-                    ))}
+                    (isCollapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />)}
             </ListItemButton>
             {children && (
                 <Collapse in={!isCollapsed} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
+                    <List disablePadding>
                         {children.map((childItem, index) => (
                             <ListItemButton
                                 component={Link}
