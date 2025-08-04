@@ -7,9 +7,9 @@ import { Grid2 as Grid, useMediaQuery } from '@mui/material';
 import { Sidebar } from '@components';
 import {
     HEADER_HEIGHT,
+    SIDEBAR_BOTTOM_LINKS,
+    SIDEBAR_LIST,
     SIDEBAR_WIDTH,
-    sidebarBottomLinks,
-    sidebarList,
 } from '@constant';
 import { Header } from '@containers';
 
@@ -52,8 +52,8 @@ export const RootLayout = ({
                         <Sidebar
                             isSidebarOpen={isSidebarOpen}
                             handleSidebarToggle={handleSidebarToggle}
-                            navItems={sidebarList}
-                            bottomControls={sidebarBottomLinks}
+                            navItems={SIDEBAR_LIST}
+                            bottomControls={SIDEBAR_BOTTOM_LINKS}
                         />
                     </Grid>
                 )}

@@ -14,7 +14,7 @@ import {
 
 import type { SidebarBottomLinkType, SidebarTileItemType } from '@components';
 
-export const sidebarList: SidebarTileItemType[] = [
+export const SIDEBAR_LIST: SidebarTileItemType[] = [
     {
         type: 'listItem',
         label: 'Overview',
@@ -101,7 +101,7 @@ export const sidebarList: SidebarTileItemType[] = [
     },
 ];
 
-export const sidebarBottomLinks: SidebarBottomLinkType[] = [
+export const SIDEBAR_BOTTOM_LINKS: SidebarBottomLinkType[] = [
     {
         icon: TuneIcon,
         route: '/explore',
