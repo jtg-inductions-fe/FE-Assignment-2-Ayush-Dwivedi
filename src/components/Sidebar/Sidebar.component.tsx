@@ -24,8 +24,8 @@ import { SidebarTile } from './SidebarTile.component';
  * <Sidebar
  *       isSidebarOpen={isSidebarOpen}
  *       handleSidebarToggle={handleSidebarToggle}
- *       navList={sidebarConfig}
- *       bottomLinksList={bottomLinksConfig}
+ *       navItems={sidebarConfig}
+ *       bottomControls={bottomControlsConfig}
  *   />
  * ```
  */
