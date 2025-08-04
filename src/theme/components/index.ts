@@ -25,4 +25,18 @@ export const components: Components = {
             },
         },
     },
+    MuiListItemIcon: {
+        styleOverrides: {
+            root: {
+                color: 'inherit',
+            },
+        },
+    },
+    MuiListItemText: {
+        styleOverrides: {
+            primary: {
+                color: 'inherit',
+            },
+        },
+    },
 };
