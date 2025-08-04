@@ -1,6 +1,7 @@
 import { type RouteObject } from 'react-router';
 
-import { HomeLayout, RootLayout } from '@layouts';
+import { RootLayout } from '@layouts';
+import { HomePage } from '@pages';
 
 /**
  * Application route configuration using nested routes.
@@ -13,7 +14,7 @@ export const routes: RouteObject[] = [
         children: [
             {
                 index: true,
-                element: <HomeLayout />,
+                element: <HomePage />,
             },
         ],
     },
