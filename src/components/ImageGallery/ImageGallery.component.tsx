@@ -44,23 +44,34 @@ export const ImageGallery = ({
         >
             {imageData
                 .slice(0, isDesktop ? maxNoOfImages.md : maxNoOfImages.xs)
-                .map((item, index) => (
-                    <ImageListItem
-                        key={item.id}
-                        cols={
-                            isDesktop
-                                ? imageLayout[index].md.cols || 1
-                                : imageLayout[index].xs.cols || 1
-                        }
-                        rows={
-                            isDesktop
-                                ? imageLayout[index].md.rows || 1
-                                : imageLayout[index].xs.rows || 1
-                        }
-                    >
-                        <img src={item.img} alt={item.title} loading="lazy" />
-                    </ImageListItem>
-                ))}
+                .reverse()
+                .map((item) => {
+                    const itemLayout = imageLayout.find(
+                        (layout) => layout.id === item.id,
+                    );
+
+                    return (
+                        <ImageListItem
+                            key={item.id}
+                            cols={
+                                isDesktop
+                                    ? itemLayout?.md.cols || 1
+                                    : itemLayout?.xs.cols || 1
+                            }
+                            rows={
+                                isDesktop
+                                    ? itemLayout?.md.rows || 1
+                                    : itemLayout?.xs.rows || 1
+                            }
+                        >
+                            <img
+                                src={item.img}
+                                alt={item.title}
+                                loading="lazy"
+                            />
+                        </ImageListItem>
+                    );
+                })}
         </MuiImageList>
     );
 };
