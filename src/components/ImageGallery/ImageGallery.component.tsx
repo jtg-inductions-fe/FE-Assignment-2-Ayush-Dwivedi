@@ -1,3 +1,4 @@
+import type { Theme } from '@mui/material';
 import {
     ImageList as MuiImageList,
     ImageListItem,
@@ -15,7 +16,7 @@ import type { ImageGalleryProps } from './ImageGallery.type';
  * @example usage
  * ```tsx
  * <ImageList
- *      imageListData={imageGalleryData}
+ *      imageGalleryData={imageGalleryData}
  *      noOfColumns={{
  *          xs: no-of-cols-in-mobile,
  *          md: no-of-cols-in-desktop
@@ -24,6 +25,11 @@ import type { ImageGalleryProps } from './ImageGallery.type';
  *          xs: no-of-img-in-mobile,
  *          md: no-of-img-in-desktop
  *      }}
+ *      gap={gap}
+ *      rowHeight={{
+ *          xs: rowHeight-for-mobile
+ *          md: rowHeight-for-desktop
+ *      }}
  * />
  * ```
  */
@@ -31,16 +37,21 @@ export const ImageGallery = ({
     imageGalleryData,
     noOfColumns,
     maxNoOfImages,
+    gap = 11,
+    rowHeight = { xs: 122, md: 244 },
 }: ImageGalleryProps) => {
-    const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
+    const isDesktop = useMediaQuery((theme: Theme) =>
+        theme.breakpoints.up('md'),
+    );
     const { imageData, imageLayout } = imageGalleryData;
 
     return (
         <MuiImageList
+            aria-label="Image gallery"
             variant="quilted"
             cols={isDesktop ? noOfColumns.md : noOfColumns.xs}
-            gap={11}
-            rowHeight={isDesktop ? 244 : 122}
+            gap={gap}
+            rowHeight={isDesktop ? rowHeight.md : rowHeight.xs}
         >
             {imageData
                 .slice(0, isDesktop ? maxNoOfImages.md : maxNoOfImages.xs)
