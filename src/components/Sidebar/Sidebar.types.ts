@@ -14,12 +14,12 @@ export type SidebarProps = {
     /**
      * List of items for sidebar navigation links or buttons
      */
-    navList: SidebarTileItemType[];
+    navItems: SidebarTileItemType[];
 
     /**
      * Utility icons and links at bottom of sidebar
      */
-    bottomLinksList: SidebarBottomLinkType[];
+    bottomControls: SidebarBottomLinkType[];
 };
 
 export type SidebarTileItemType =
@@ -50,11 +50,6 @@ export type SidebarTileItemType =
           notificationCount?: number;
 
           /**
-           * Tells whether a SidebarItem is child or parent
-           */
-          isChild: boolean;
-
-          /**
            * Optional child links under the current item.
            */
           children?: Extract<SidebarTileItemType, { type: 'listItem' }>[];
@@ -74,6 +69,11 @@ export type SidebarTileProps = Extract<
      * Function to handle click events on the sidebar tile.
      */
     onClick: () => void;
+
+    /**
+     * Tells whether a SidebarItem is child or parent
+     */
+    isChild?: boolean;
 };
 
 export type SidebarBottomLinkType = {

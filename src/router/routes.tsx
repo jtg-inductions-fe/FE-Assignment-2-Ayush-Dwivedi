@@ -15,6 +15,13 @@ export const routes: RouteObject[] = [
                 index: true,
                 element: <h1>Dashboard</h1>,
             },
+        ],
+    },
+
+    {
+        path: '/',
+        element: <RootLayout hideSidebar={true} hideFooter={true} />,
+        children: [
             {
                 path: '*',
                 element: <h1>404 Not Found</h1>,

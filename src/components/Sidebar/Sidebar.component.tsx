@@ -32,8 +32,8 @@ import { SidebarTile } from './SidebarTile.component';
 export const Sidebar = ({
     isSidebarOpen,
     handleSidebarToggle,
-    navList,
-    bottomLinksList,
+    navItems,
+    bottomControls,
 }: SidebarProps) => {
     const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
@@ -53,8 +53,8 @@ export const Sidebar = ({
                 height="100%"
                 paddingBottom={4}
             >
-                <List>
-                    {navList.map((item, index) =>
+                <List aria-label="sidebar navigation">
+                    {navItems.map((item, index) =>
                         item.type === 'listItem' ? (
                             <SidebarTile
                                 {...item}
@@ -66,21 +66,20 @@ export const Sidebar = ({
                         ),
                     )}
                 </List>
-                <List
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        flexWrap: 'wrap',
-                    }}
+                <Stack
+                    component="ul"
+                    aria-label="sidebar bottom controls"
+                    direction="row"
+                    flexWrap="wrap"
                 >
-                    {bottomLinksList.map((item, index) => (
+                    {bottomControls.map((item, index) => (
                         <ListItem key={index} sx={{ width: 'fit-content' }}>
                             <Link to={item.route} onClick={handleSidebarToggle}>
                                 <item.icon sx={{ color: 'text.primary' }} />
                             </Link>
                         </ListItem>
                     ))}
-                </List>
+                </Stack>
             </Stack>
         </Drawer>
     );

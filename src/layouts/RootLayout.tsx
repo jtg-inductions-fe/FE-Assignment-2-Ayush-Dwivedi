@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Outlet } from 'react-router';
 
-import { Grid2 as Grid } from '@mui/material';
+import { Grid2 as Grid, useMediaQuery } from '@mui/material';
 
 import { Sidebar } from '@components';
 import {
@@ -25,8 +25,15 @@ import { Header } from '@containers';
  * </Route>
  * ```
  */
-export const RootLayout = () => {
+export const RootLayout = ({
+    hideSidebar,
+    hideFooter,
+}: {
+    hideSidebar?: boolean;
+    hideFooter?: boolean;
+}) => {
     const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
+    const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
     const handleSidebarToggle = () => {
         setSidebarOpen((prev) => !prev);
     };
@@ -40,19 +47,21 @@ export const RootLayout = () => {
                 />
             </Grid>
             <Grid container direction="row">
-                <Grid sx={{ width: { md: SIDEBAR_WIDTH } }}>
-                    <Sidebar
-                        isSidebarOpen={isSidebarOpen}
-                        handleSidebarToggle={handleSidebarToggle}
-                        navList={sidebarList}
-                        bottomLinksList={sidebarBottomLinks}
-                    />
-                </Grid>
+                {!(hideSidebar && isDesktop) && (
+                    <Grid sx={{ width: { md: SIDEBAR_WIDTH } }}>
+                        <Sidebar
+                            isSidebarOpen={isSidebarOpen}
+                            handleSidebarToggle={handleSidebarToggle}
+                            navItems={sidebarList}
+                            bottomControls={sidebarBottomLinks}
+                        />
+                    </Grid>
+                )}
                 <Grid size="grow">
                     <main>
                         <Outlet />
                     </main>
-                    <footer>Footer</footer>
+                    {!hideFooter && <footer>Footer</footer>}
                 </Grid>
             </Grid>
         </Grid>

@@ -8,16 +8,16 @@ export const palette: PaletteOptions = {
         main: COLORS.GREEN[500],
     },
     error: {
-        main: COLORS.RED[800],
-        light: COLORS.RED[200],
+        main: COLORS.RED[200],
+        contrastText: COLORS.RED[800],
     },
     info: {
-        main: COLORS.BLUE[800],
-        light: COLORS.BLUE[100],
+        main: COLORS.BLUE[100],
+        contrastText: COLORS.BLUE[800],
     },
     success: {
-        main: COLORS.GREEN[800],
-        light: COLORS.GREEN[100],
+        main: COLORS.GREEN[100],
+        contrastText: COLORS.GREEN[800],
     },
     text: {
         primary: COLORS.COOL_GRAY[900],

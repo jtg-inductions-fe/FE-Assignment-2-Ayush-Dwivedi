@@ -7,6 +7,7 @@ import {
     ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material';
 import {
+    Badge,
     Collapse,
     List,
     ListItem,
@@ -15,7 +16,7 @@ import {
     ListItemText,
 } from '@mui/material';
 
-import { Link, StyledBadge } from '@components';
+import { Link } from '@components';
 
 import { type SidebarTileProps } from './Sidebar.types';
 
@@ -85,9 +86,9 @@ export const SidebarTile = ({
                     }}
                 />
                 {!children && notificationCount && (
-                    <StyledBadge
+                    <Badge
                         badgeContent={notificationCount}
-                        badgeVariant="error"
+                        color="error"
                         sx={{
                             '& .MuiBadge-badge': {
                                 transform: 'translateY(-50%)',
@@ -100,13 +101,16 @@ export const SidebarTile = ({
             </ListItemButton>
             {children && (
                 <Collapse in={!isCollapsed} timeout="auto" unmountOnExit>
-                    <List disablePadding>
+                    <List
+                        aria-label={`Sub nav items for ${label}`}
+                        disablePadding
+                    >
                         {children.map((childItem) => (
                             <SidebarTile
                                 {...childItem}
                                 onClick={onClick}
                                 key={childItem.label}
-                                isChild
+                                isChild={true}
                             />
                         ))}
                     </List>
