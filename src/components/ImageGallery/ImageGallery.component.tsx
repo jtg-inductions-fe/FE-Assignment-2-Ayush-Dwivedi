@@ -44,6 +44,12 @@ export const ImageGallery = ({
         theme.breakpoints.up('md'),
     );
     const { imageData, imageLayout } = imageGalleryData;
+    const finalImageData = isDesktop
+        ? imageData.slice(0, maxNoOfImages.md)
+        : imageData.slice(0, maxNoOfImages.xs).reverse();
+    const finalImageLayout = isDesktop
+        ? imageLayout.slice(0, maxNoOfImages.md)
+        : imageLayout.slice(0, maxNoOfImages.xs).reverse();
 
     return (
         <MuiImageList
@@ -53,36 +59,23 @@ export const ImageGallery = ({
             gap={gap}
             rowHeight={isDesktop ? rowHeight.md : rowHeight.xs}
         >
-            {imageData
-                .slice(0, isDesktop ? maxNoOfImages.md : maxNoOfImages.xs)
-                .reverse()
-                .map((item) => {
-                    const itemLayout = imageLayout.find(
-                        (layout) => layout.id === item.id,
-                    );
-
-                    return (
-                        <ImageListItem
-                            key={item.id}
-                            cols={
-                                isDesktop
-                                    ? itemLayout?.md.cols || 1
-                                    : itemLayout?.xs.cols || 1
-                            }
-                            rows={
-                                isDesktop
-                                    ? itemLayout?.md.rows || 1
-                                    : itemLayout?.xs.rows || 1
-                            }
-                        >
-                            <img
-                                src={item.img}
-                                alt={item.title}
-                                loading="lazy"
-                            />
-                        </ImageListItem>
-                    );
-                })}
+            {finalImageData.map((item, index) => (
+                <ImageListItem
+                    key={item.id}
+                    cols={
+                        isDesktop
+                            ? finalImageLayout[index]?.md.cols || 1
+                            : finalImageLayout[index]?.xs.cols || 1
+                    }
+                    rows={
+                        isDesktop
+                            ? finalImageLayout[index]?.md.rows || 1
+                            : finalImageLayout[index]?.xs.rows || 1
+                    }
+                >
+                    <img src={item.img} alt={item.title} />
+                </ImageListItem>
+            ))}
         </MuiImageList>
     );
 };
