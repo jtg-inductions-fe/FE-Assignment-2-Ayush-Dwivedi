@@ -38,8 +38,7 @@ export const CustomTooltip = ({
 
     if (!active || !payload || payload.length === 0) return null;
     const entry = payload[0] as { value: number | string; name: string };
-
-    const yAxisValue = entry.value;
+    if (!entry || typeof entry !== 'object' || !('value' in entry)) return null;
 
     return (
         <>
@@ -74,13 +73,12 @@ export const CustomTooltip = ({
                                     {entry.name}:
                                 </Typography>
                             )}
-                            {yAxisValue && (
-                                <Typography variant="body1">
-                                    {tickFormatter
-                                        ? tickFormatter(entry.value)
-                                        : entry.value}
-                                </Typography>
-                            )}
+
+                            <Typography variant="body1">
+                                {tickFormatter
+                                    ? tickFormatter(entry.value)
+                                    : entry.value}
+                            </Typography>
                         </Stack>
                     </Box>
                 }

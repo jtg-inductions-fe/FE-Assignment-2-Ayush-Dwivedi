@@ -36,7 +36,7 @@ export const SectionWrapper = ({
         sx={{ p: 4, borderRadius: 4 }}
     >
         <Stack gap={gap}>
-            <header aria-label={`Header for ${title} section`}>
+            <header>
                 <Stack alignItems="center" direction="row" gap={2}>
                     <Typography variant="h2">{title}</Typography>
                     {infoTooltip && (
