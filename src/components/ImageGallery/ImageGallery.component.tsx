@@ -8,14 +8,14 @@ import {
 import type { ImageGalleryProps } from './ImageGallery.type';
 
 /**
- * ImageList component
+ * ImageGallery component
  * Provides Image list as a designed gallery
  * @component
  * @returns ImageList with 3 cols and customized rows for desktop and mobile
  *
  * @example usage
  * ```tsx
- * <ImageList
+ * <ImageGallery
  *      imageGalleryData={imageGalleryData}
  *      noOfColumns={{
  *          xs: no-of-cols-in-mobile,
