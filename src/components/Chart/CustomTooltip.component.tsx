@@ -31,14 +31,16 @@ export const CustomTooltip = ({
     tickFormatter,
 }: CustomTooltipProps) => {
     const anchorRef = useRef<HTMLSpanElement>(null);
+    if (!active || !payload || payload.length === 0) return null;
+
     const position =
         active && coordinate
             ? { left: coordinate.x, top: coordinate.y }
             : { left: 0, top: 0 };
-
-    if (!active || !payload || payload.length === 0) return null;
     const entry = payload[0] as { value: number | string; name: string };
     if (!entry || typeof entry !== 'object' || !('value' in entry)) return null;
+    const formatValue = (value: number | string) =>
+        tickFormatter ? tickFormatter(value) : value;
 
     return (
         <>
@@ -75,9 +77,7 @@ export const CustomTooltip = ({
                             )}
 
                             <Typography variant="body1">
-                                {tickFormatter
-                                    ? tickFormatter(entry.value)
-                                    : entry.value}
+                                {formatValue(entry.value)}
                             </Typography>
                         </Stack>
                     </Box>
