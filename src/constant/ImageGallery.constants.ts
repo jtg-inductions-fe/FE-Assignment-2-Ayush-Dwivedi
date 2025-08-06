@@ -27,37 +27,28 @@ export const IMAGE_GALLERY_DATA: ImageGalleryDataType[] = [
     },
 ];
 
-export const IMAGE_GALLERY_LAYOUT: ImageGalleryLayoutType[] = [
-    {
-        id: 'image1',
-        xs: { rows: 1, cols: 1 },
-        md: {
+export const IMAGE_GALLERY_LAYOUT: ImageGalleryLayoutType = {
+    xs: [
+        { rows: 2, cols: 1 },
+        { rows: 1, cols: 1 },
+        { rows: 1, cols: 1 },
+    ],
+    md: [
+        {
             rows: 1,
             cols: 1,
         },
-    },
-    {
-        id: 'image2',
-        xs: { rows: 1, cols: 1 },
-        md: {
+        {
             rows: 1,
             cols: 1,
         },
-    },
-    {
-        id: 'image3',
-        xs: { rows: 2, cols: 1 },
-        md: {
+        {
             rows: 2,
             cols: 1,
         },
-    },
-    {
-        id: 'image4',
-        xs: { rows: 1, cols: 2 },
-        md: {
+        {
             rows: 1,
             cols: 2,
         },
-    },
-];
+    ],
+};

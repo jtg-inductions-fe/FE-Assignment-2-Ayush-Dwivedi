@@ -17,24 +17,19 @@ export type ImageGalleryDataType = {
 
 export type ImageGalleryLayoutType = {
     /**
-     * Id referencing to id of image in image data
-     */
-    id: string;
-
-    /**
      * Layout details for mobile view
      */
     xs: {
         /**
          * Number of rows occupied by the image (must be positive)
          */
-        rows?: number;
+        rows: number;
 
         /**
          * Number of columns occupied by image (must be positive)
          */
-        cols?: number;
-    };
+        cols: number;
+    }[];
 
     /**
      * Layout details for desktop view
@@ -43,13 +38,13 @@ export type ImageGalleryLayoutType = {
         /**
          * Number of rows occupied by the image
          */
-        rows?: number;
+        rows: number;
 
         /**
          * Number of columns occupied by image
          */
-        cols?: number;
-    };
+        cols: number;
+    }[];
 };
 
 export type ImageGalleryProps = {
@@ -65,7 +60,7 @@ export type ImageGalleryProps = {
         /**
          * Image data related to layout
          */
-        imageLayout: ImageGalleryLayoutType[];
+        imageLayout: ImageGalleryLayoutType;
     };
 
     /**
