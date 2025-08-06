@@ -37,6 +37,7 @@ export const Sales = () => {
             title="Sales"
             infoTooltip="Sales data for top products"
             gap={7}
+            boxPadding={8}
         >
             <Chart
                 xKey="date"

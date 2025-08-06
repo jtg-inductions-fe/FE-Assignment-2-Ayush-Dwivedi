@@ -20,4 +20,9 @@ export type SectionWrapperProps = {
      * Optional gap between elements inside the section.
      */
     gap?: number;
+
+    /**
+     * Optional padding of the section.
+     */
+    boxPadding?: number;
 } & PaperProps;

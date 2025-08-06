@@ -51,7 +51,7 @@ export const Chart = <XKey extends string, YKey extends string>({
         <ResponsiveContainer minHeight={420} height="100%">
             <LineChart
                 data={data}
-                margin={{ bottom: 40, left: isDesktop ? 40 : -40, right: 8 }}
+                margin={{ bottom: 40, left: isDesktop ? 40 : -44, right: 8 }}
             >
                 <CartesianGrid
                     horizontal={true}
