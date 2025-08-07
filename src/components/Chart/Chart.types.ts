@@ -46,6 +46,7 @@ export type ChartProps<
 
         /**
          * Formatter function for X-axis tick values.
+         * Can be string or number depending on data.
          */
         xAxis?: (value: string | number) => string;
 

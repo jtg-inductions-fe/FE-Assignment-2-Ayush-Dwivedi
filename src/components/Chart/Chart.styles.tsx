@@ -5,25 +5,27 @@ import {
     Tooltip,
     tooltipClasses,
     type TooltipProps,
-    useMediaQuery,
 } from '@mui/material';
 
-export const StyledChartContainer = styled(ResponsiveContainer)(({
-    theme: {
-        typography: { caption },
-        palette,
-    },
-}) => {
-    const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
-
-    return {
-        '& .tick': {
-            fontSize: isDesktop ? '1.4rem' : caption.fontSize,
-            fontWeight: isDesktop ? 600 : caption.fontWeight,
-            fill: palette.text.secondary,
+export const StyledChartContainer = styled(ResponsiveContainer)(
+    ({
+        theme: {
+            typography: { caption },
+            palette,
+            breakpoints,
         },
-    };
-});
+    }) => ({
+        '& .tick': {
+            fontSize: caption.fontSize,
+            fontWeight: caption.fontWeight,
+            fill: palette.text.secondary,
+            [breakpoints.up('md')]: {
+                fontSize: '1.4rem',
+                fontWeight: 600,
+            },
+        },
+    }),
+);
 
 export const StyledTooltip = styled(
     ({ className, ...props }: TooltipProps & { className?: string }) => (

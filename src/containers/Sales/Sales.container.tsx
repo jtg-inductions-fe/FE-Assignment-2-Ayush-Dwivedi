@@ -29,10 +29,9 @@ export const Sales = () => {
             return parts[0];
         },
         tooltip: (value: number) => {
-            const num = typeof value === 'string' ? parseFloat(value) : value;
-            if (isNaN(num) || !isFinite(num)) return '$0k';
+            if (isNaN(value) || !isFinite(value)) return '$0k';
 
-            return `$${(num / 1000).toFixed(0)}k`;
+            return `$${(value / 1000).toFixed(0)}k`;
         },
     };
 
