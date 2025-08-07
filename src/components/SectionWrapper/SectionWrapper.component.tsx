@@ -29,17 +29,20 @@ export const SectionWrapper = ({
     children,
     gap = 4,
     boxPadding = 6,
+    headerId,
 }: SectionWrapperProps) => (
     <Paper
         component="section"
-        aria-label={`${title} section`}
+        aria-labelledby={headerId}
         elevation={1}
         sx={{ p: boxPadding, borderRadius: 4 }}
     >
         <Stack gap={gap}>
             <header>
                 <Stack alignItems="center" direction="row" gap={2}>
-                    <Typography variant="h2">{title}</Typography>
+                    <Typography variant="h2" id={headerId}>
+                        {title}
+                    </Typography>
                     {infoTooltip && (
                         <MuiTooltip title={infoTooltip} arrow placement="top">
                             <IconButton>

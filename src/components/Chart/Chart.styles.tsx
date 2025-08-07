@@ -1,9 +1,29 @@
+import { ResponsiveContainer } from 'recharts';
+
 import {
     styled,
     Tooltip,
     tooltipClasses,
     type TooltipProps,
+    useMediaQuery,
 } from '@mui/material';
+
+export const StyledChartContainer = styled(ResponsiveContainer)(({
+    theme: {
+        typography: { caption },
+        palette,
+    },
+}) => {
+    const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
+    return {
+        '& .tick': {
+            fontSize: isDesktop ? '1.4rem' : caption.fontSize,
+            fontWeight: isDesktop ? 600 : caption.fontWeight,
+            fill: palette.text.secondary,
+        },
+    };
+});
 
 export const StyledTooltip = styled(
     ({ className, ...props }: TooltipProps & { className?: string }) => (

@@ -2,7 +2,6 @@ import {
     CartesianGrid,
     Line,
     LineChart,
-    ResponsiveContainer,
     Tooltip,
     XAxis,
     YAxis,
@@ -10,6 +9,7 @@ import {
 
 import { useMediaQuery, useTheme } from '@mui/material';
 
+import { StyledChartContainer } from './Chart.styles';
 import type { ChartProps } from './Chart.types';
 import { CustomTooltip } from './CustomTooltip.component';
 
@@ -41,18 +41,10 @@ export const Chart = <XKey extends string, YKey extends string>({
 }: ChartProps<XKey, YKey>) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-    const labelDesign = {
-        fontSize: theme.typography.caption.fontSize,
-        fontWeight: theme.typography.caption.fontWeight,
-        fill: theme.palette.text.secondary,
-    };
 
     return (
-        <ResponsiveContainer minHeight={420} height="100%">
-            <LineChart
-                data={data}
-                margin={{ bottom: 40, left: isDesktop ? 40 : -44, right: 8 }}
-            >
+        <StyledChartContainer minHeight={420} height="100%" width="100%">
+            <LineChart data={data}>
                 <CartesianGrid
                     horizontal={true}
                     vertical={false}
@@ -65,18 +57,23 @@ export const Chart = <XKey extends string, YKey extends string>({
                     axisLine={false}
                     tickLine={false}
                     tickCount={xTickCount}
-                    dy={28}
-                    dx={-5}
-                    style={labelDesign}
+                    interval="preserveStartEnd"
+                    tick={{
+                        className: 'tick',
+                    }}
+                    height={50}
+                    dx={-4}
+                    tickMargin={isDesktop ? 28 : 20}
                 />
                 <YAxis
                     dataKey={yKey}
                     tickFormatter={tickFormatter?.yAxis}
                     axisLine={false}
                     tickLine={false}
+                    hide={!isDesktop}
                     tickCount={yTickCount}
-                    dx={-55}
-                    style={labelDesign}
+                    tickMargin={25}
+                    tick={{ className: 'tick' }}
                 />
                 <Tooltip<string | number, string>
                     cursor={{
@@ -100,6 +97,6 @@ export const Chart = <XKey extends string, YKey extends string>({
                     animationDuration={0}
                 />
             </LineChart>
-        </ResponsiveContainer>
+        </StyledChartContainer>
     );
 };

@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-
 import { Circle as CircleIcon } from '@mui/icons-material';
 import { Box, Stack, Typography } from '@mui/material';
 
@@ -30,28 +28,15 @@ export const CustomTooltip = ({
     coordinate,
     tickFormatter,
 }: CustomTooltipProps) => {
-    const anchorRef = useRef<HTMLSpanElement>(null);
     if (!active || !payload || payload.length === 0) return null;
 
-    const position =
-        active && coordinate
-            ? { left: coordinate.x, top: coordinate.y }
-            : { left: 0, top: 0 };
-    const entry = payload[0] as { value: number | string; name: string };
+    const entry = payload[0] as { value: number; name: string };
     if (!entry || typeof entry !== 'object' || !('value' in entry)) return null;
-    const formatValue = (value: number | string) =>
+    const formatValue = (value: number) =>
         tickFormatter ? tickFormatter(value) : value;
 
     return (
         <>
-            <span
-                ref={anchorRef}
-                style={{
-                    position: 'absolute',
-                    left: position.left,
-                    top: position.top,
-                }}
-            />
             <StyledTooltip
                 open
                 title={
@@ -61,7 +46,12 @@ export const CustomTooltip = ({
                         paddingBottom={4}
                         borderRadius={2}
                     >
-                        <Typography variant="body2" gutterBottom>
+                        <Typography
+                            variant="body2"
+                            fontWeight="fontWeightMedium"
+                            color="text.secondary"
+                            gutterBottom
+                        >
                             {label}
                         </Typography>
                         <Stack direction="row" spacing={1} alignItems="center">
@@ -69,7 +59,7 @@ export const CustomTooltip = ({
                             {entry.name && (
                                 <Typography
                                     variant="body1"
-                                    fontWeight="fontWeightMedium"
+                                    fontWeight="fontWeightRegular"
                                     color="text.secondary"
                                 >
                                     {entry.name}:
@@ -82,13 +72,15 @@ export const CustomTooltip = ({
                         </Stack>
                     </Box>
                 }
-                slotProps={{
-                    popper: {
-                        anchorEl: anchorRef.current,
-                    },
-                }}
             >
-                <Box visibility="hidden" />
+                <Box
+                    visibility="hidden"
+                    style={{
+                        position: 'absolute',
+                        left: coordinate.x,
+                        top: coordinate.y,
+                    }}
+                />
             </StyledTooltip>
         </>
     );

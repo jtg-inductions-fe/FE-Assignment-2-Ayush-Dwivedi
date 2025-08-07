@@ -13,20 +13,24 @@ import { useGetSalesData } from '@hooks';
  */
 export const Sales = () => {
     const { data: salesData } = useGetSalesData();
+
     const tickFormatter = {
         yAxis: (value: number | string) => {
             const num = typeof value === 'string' ? parseFloat(value) : value;
+            if (isNaN(num) || !isFinite(num)) return '0K';
 
             return `${(num / 1000).toFixed(0)}K`;
         },
         xAxis: (value: number | string) => {
             const str = String(value);
+            if (!str || typeof str !== 'string') return '';
             const parts = str.split(',');
 
             return parts[0];
         },
-        tooltip: (value: number | string) => {
+        tooltip: (value: number) => {
             const num = typeof value === 'string' ? parseFloat(value) : value;
+            if (isNaN(num) || !isFinite(num)) return '$0k';
 
             return `$${(num / 1000).toFixed(0)}k`;
         },
@@ -35,9 +39,10 @@ export const Sales = () => {
     return (
         <SectionWrapper
             title="Sales"
-            infoTooltip="Sales data for top products"
+            infoTooltip="Sales info"
             gap={7}
             boxPadding={8}
+            headerId="sales"
         >
             <Chart
                 xKey="date"

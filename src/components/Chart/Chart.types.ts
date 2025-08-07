@@ -42,7 +42,7 @@ export type ChartProps<
         /**
          * Formatter function for Y-axis tick values.
          */
-        yAxis?: (value: number | string) => string;
+        yAxis?: (value: number) => string;
 
         /**
          * Formatter function for X-axis tick values.
@@ -52,7 +52,7 @@ export type ChartProps<
         /**
          * Formatter function for tooltip values.
          */
-        tooltip?: (value: string | number) => string;
+        tooltip?: (value: number) => string;
     };
 };
 
@@ -60,5 +60,5 @@ export type CustomTooltipProps = {
     /**
      * Optional formatter function to format the tooltip value.
      */
-    tickFormatter?: (value: string | number) => string;
+    tickFormatter?: (value: number) => string;
 } & TooltipContentProps<number | string, string>;

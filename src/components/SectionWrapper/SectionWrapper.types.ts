@@ -25,4 +25,9 @@ export type SectionWrapperProps = {
      * Optional padding of the section.
      */
     boxPadding?: number;
+
+    /**
+     * Id of section heading.
+     */
+    headerId: string;
 } & PaperProps;
