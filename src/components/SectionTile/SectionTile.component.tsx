@@ -33,17 +33,15 @@ export const SectionTile = ({
         <ListItem disablePadding sx={{ pt: 2, pb: 2 }}>
             {avatar && (
                 <ListItemAvatar>
-                    <Avatar>
-                        <img src={avatar} alt={title} width="100%" />
-                    </Avatar>
+                    <Avatar src={avatar} alt={title} />
                 </ListItemAvatar>
             )}
             <ListItemText
                 primary={title}
                 secondary={subtitle}
                 slotProps={{
-                    primary: { noWrap: true },
-                    secondary: { noWrap: true },
+                    primary: { noWrap: true, title: title },
+                    secondary: { noWrap: true, title: subtitle },
                 }}
             />
             {value}
