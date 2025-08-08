@@ -75,11 +75,9 @@ export const CustomTooltip = ({
             >
                 <Box
                     visibility="hidden"
-                    style={{
-                        position: 'absolute',
-                        left: coordinate.x,
-                        top: coordinate.y,
-                    }}
+                    position="absolute"
+                    left={coordinate.x}
+                    top={coordinate.y}
                 />
             </StyledTooltip>
         </>

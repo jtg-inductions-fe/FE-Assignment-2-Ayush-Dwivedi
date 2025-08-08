@@ -29,5 +29,5 @@ export type SectionWrapperProps = {
     /**
      * Id of section heading.
      */
-    headerId: string;
+    id: string;
 } & PaperProps;

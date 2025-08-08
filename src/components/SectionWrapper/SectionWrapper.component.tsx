@@ -29,18 +29,18 @@ export const SectionWrapper = ({
     children,
     gap = 4,
     boxPadding = 6,
-    headerId,
+    id,
 }: SectionWrapperProps) => (
     <Paper
         component="section"
-        aria-labelledby={headerId}
+        aria-labelledby={id}
         elevation={1}
         sx={{ p: boxPadding, borderRadius: 4 }}
     >
         <Stack gap={gap}>
             <header>
                 <Stack alignItems="center" direction="row" gap={2}>
-                    <Typography variant="h2" id={headerId}>
+                    <Typography variant="h2" id={id}>
                         {title}
                     </Typography>
                     {infoTooltip && (
