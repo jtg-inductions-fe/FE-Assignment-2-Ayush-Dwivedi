@@ -1,6 +1,8 @@
-import { List, Typography } from '@mui/material';
+import { Fragment } from 'react';
 
-import { SectionTile, SectionWrapper } from '@components';
+import { Divider, List, Typography } from '@mui/material';
+
+import { InfoListTile, SectionWrapper } from '@components';
 import { useGetLatestCustomersData } from '@hooks';
 
 /**
@@ -17,21 +19,27 @@ export const Customers = () => {
     const { data: latestCustomers } = useGetLatestCustomersData();
 
     return (
-        <SectionWrapper title="Latest Customers" headerId="customer-header">
-            <List>
-                {latestCustomers.slice(0, 6).map((customer, index) => (
-                    <SectionTile
-                        avatar={customer.image}
-                        title={customer.name}
-                        subtitle={customer.email}
-                        value={
-                            <Typography variant="body1">
-                                ${customer.amount}
-                            </Typography>
-                        }
-                        key={customer.email}
-                        lastItem={index === 5}
-                    />
+        <SectionWrapper
+            title="Latest Customers"
+            id="customer"
+            sx={{ width: { xl: '33.33%', xs: '100%' } }}
+        >
+            <List aria-labelledby="customer">
+                {latestCustomers.map((customer, index) => (
+                    <Fragment key={customer.email}>
+                        <InfoListTile
+                            avatar={customer.image}
+                            title={customer.name}
+                            subtitle={customer.email}
+                            rightNode={
+                                <Typography variant="body1">
+                                    ${customer.amount}
+                                </Typography>
+                            }
+                            key={customer.email}
+                        />
+                        {!(index === latestCustomers.length - 1) && <Divider />}
+                    </Fragment>
                 ))}
             </List>
         </SectionWrapper>

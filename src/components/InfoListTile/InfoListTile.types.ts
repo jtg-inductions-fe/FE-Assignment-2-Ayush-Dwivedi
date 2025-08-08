@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-export type SectionTileProps = {
+export type InfoListTileProps = {
     /**
      * Avatar image for tile
      */
@@ -17,12 +17,7 @@ export type SectionTileProps = {
     subtitle: string;
 
     /**
-     * Rightmost designed jsx for customized value
+     * Rightmost designed jsx
      */
-    value: ReactNode;
-
-    /**
-     * Checks whether the tile is last list item(false by default)
-     */
-    lastItem?: boolean;
+    rightNode: ReactNode;
 };

@@ -26,16 +26,7 @@ export const HomePage = () => (
         </section>
         <Sales />
         <Stack gap={4} sx={{ flexDirection: { md: 'column', xl: 'row' } }}>
-            <Stack
-                sx={{
-                    width: {
-                        xl: '33.33%',
-                        xs: '100%',
-                    },
-                }}
-            >
-                <Customers />
-            </Stack>
+            <Customers />
         </Stack>
     </Stack>
 );
