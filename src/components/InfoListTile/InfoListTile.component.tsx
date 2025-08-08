@@ -22,7 +22,7 @@ export const InfoListTile = ({
     subtitle,
     rightNode,
 }: InfoListTileProps) => (
-    <ListItem disablePadding sx={{ pt: 2, pb: 2 }}>
+    <ListItem disablePadding sx={{ py: 2 }}>
         {avatar && (
             <ListItemAvatar>
                 <Avatar src={avatar} alt={`Image of ${title}`} />
