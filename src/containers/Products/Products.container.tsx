@@ -1,6 +1,8 @@
-import { Box, List, Typography } from '@mui/material';
+import { Fragment } from 'react';
 
-import { SectionTile, SectionWrapper } from '@components';
+import { Box, Divider, List, Typography } from '@mui/material';
+
+import { InfoListTile, SectionWrapper } from '@components';
 import { useGetTopProducts } from '@hooks';
 
 /**
@@ -17,32 +19,34 @@ export const Products = () => {
     const { data: topProducts } = useGetTopProducts();
 
     return (
-        <SectionWrapper title="Top products" headerId="top-products">
-            <List>
-                {topProducts
-                    .slice(0, 6)
-                    .map(({ title, techStack, sales, id }, index) => (
-                        <SectionTile
+        <SectionWrapper
+            title="Top products"
+            id="top-products"
+            sx={{ flexGrow: 1 }}
+        >
+            <List aria-labelledby="top-products">
+                {topProducts.map(({ title, techStack, sales, id }, index) => (
+                    <Fragment key={id}>
+                        <InfoListTile
                             title={title}
                             subtitle={techStack}
-                            value={
+                            rightNode={
                                 <Typography variant="body1">
                                     {`${sales} `}
                                     <Box
                                         component="span"
                                         fontWeight="fontWeightRegular"
-                                        sx={{
-                                            color: 'text.secondary',
-                                        }}
+                                        color="text.secondary"
                                     >
                                         sales
                                     </Box>
                                 </Typography>
                             }
                             key={id}
-                            lastItem={index === 5}
                         />
-                    ))}
+                        {!(index === topProducts.length - 1) && <Divider />}
+                    </Fragment>
+                ))}
             </List>
         </SectionWrapper>
     );
