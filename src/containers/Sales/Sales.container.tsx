@@ -48,7 +48,7 @@ export const Sales = () => {
             <Chart
                 xKey="date"
                 yKey="amount"
-                data={salesData}
+                data={salesData ?? []}
                 dataName="Sales"
                 tickFormatter={tickFormatter}
             />
