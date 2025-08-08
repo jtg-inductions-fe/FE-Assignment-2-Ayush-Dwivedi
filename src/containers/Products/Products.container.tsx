@@ -16,7 +16,7 @@ import { useGetTopProducts } from '@hooks';
  * ```
  */
 export const Products = () => {
-    const { data: topProducts } = useGetTopProducts();
+    const { data: topProducts = [] } = useGetTopProducts();
 
     return (
         <SectionWrapper
@@ -42,9 +42,10 @@ export const Products = () => {
                                     </Box>
                                 </Typography>
                             }
-                            key={id}
                         />
-                        {!(index === topProducts.length - 1) && <Divider />}
+                        {!(index === topProducts.length - 1) && (
+                            <Divider aria-hidden />
+                        )}
                     </Fragment>
                 ))}
             </List>
