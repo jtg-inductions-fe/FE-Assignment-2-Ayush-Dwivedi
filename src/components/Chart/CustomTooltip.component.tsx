@@ -32,8 +32,6 @@ export const CustomTooltip = ({
 
     const entry = payload[0] as { value: number; name: string };
     if (!entry || typeof entry !== 'object' || !('value' in entry)) return null;
-    const formatValue = (value: number) =>
-        tickFormatter ? tickFormatter(value) : value;
 
     return (
         <>
@@ -67,7 +65,9 @@ export const CustomTooltip = ({
                             )}
 
                             <Typography variant="body1">
-                                {formatValue(entry.value)}
+                                {tickFormatter
+                                    ? tickFormatter(entry.value)
+                                    : entry.value}
                             </Typography>
                         </Stack>
                     </Box>

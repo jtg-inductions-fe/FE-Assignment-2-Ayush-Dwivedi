@@ -15,7 +15,7 @@ export const Sales = () => {
     const { data: salesData } = useGetSalesData();
 
     const tickFormatter = {
-        yAxis: (value: number | string) => {
+        yAxis: (value: number) => {
             const num = typeof value === 'string' ? parseFloat(value) : value;
             if (isNaN(num) || !isFinite(num)) return '0K';
 

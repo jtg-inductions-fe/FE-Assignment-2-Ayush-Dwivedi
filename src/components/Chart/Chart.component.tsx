@@ -58,7 +58,6 @@ export const Chart = <XKey extends string, YKey extends string>({
                     tickLine={false}
                     tickCount={xTickCount}
                     interval="preserveStartEnd"
-                    padding={{ right: 12 }}
                     tick={{
                         className: 'tick',
                     }}

@@ -24,6 +24,10 @@ export const StyledChartContainer = styled(ResponsiveContainer)(
                 fontWeight: 600,
             },
         },
+
+        '& svg[role="application"]': {
+            overflow: 'visible',
+        },
     }),
 );
 
