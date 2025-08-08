@@ -32,7 +32,11 @@ export const Customers = () => {
                             title={customer.name}
                             subtitle={customer.email}
                             rightNode={
-                                <Typography variant="body1">
+                                <Typography
+                                    variant="body1"
+                                    title={`$${customer.amount}`}
+                                    noWrap
+                                >
                                     ${customer.amount}
                                 </Typography>
                             }
