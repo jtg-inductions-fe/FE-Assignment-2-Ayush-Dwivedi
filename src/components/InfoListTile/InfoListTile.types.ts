@@ -17,7 +17,7 @@ export type InfoListTileProps = {
     subtitle: string;
 
     /**
-     * Rightmost designed jsx
+     * Right‑aligned custom element (e.g., amount, action, status)
      */
     rightNode: ReactNode;
 };
