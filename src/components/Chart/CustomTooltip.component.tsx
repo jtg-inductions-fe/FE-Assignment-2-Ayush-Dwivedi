@@ -31,7 +31,6 @@ export const CustomTooltip = ({
     if (!active || !payload || payload.length === 0 || !coordinate) return null;
 
     const entry = payload[0] as { value: number; name: string };
-    if (!entry || typeof entry !== 'object') return null;
 
     return (
         <StyledTooltip
