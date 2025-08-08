@@ -42,7 +42,7 @@ export const Customers = () => {
                             }
                             key={customer.email}
                         />
-                        {!(index === latestCustomers.length - 1) && (
+                        {index !== latestCustomers.length - 1 && (
                             <Divider aria-hidden />
                         )}
                     </Fragment>
