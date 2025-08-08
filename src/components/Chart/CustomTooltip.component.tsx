@@ -65,9 +65,7 @@ export const CustomTooltip = ({
                             )}
 
                             <Typography variant="body1">
-                                {tickFormatter
-                                    ? tickFormatter(entry.value)
-                                    : entry.value}
+                                {tickFormatter?.(entry.value) ?? entry.value}
                             </Typography>
                         </Stack>
                     </Box>

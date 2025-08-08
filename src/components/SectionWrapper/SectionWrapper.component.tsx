@@ -43,13 +43,24 @@ export const SectionWrapper = ({
                     <Typography variant="h2" id={id}>
                         {title}
                     </Typography>
-                    {infoTooltip && (
-                        <MuiTooltip title={infoTooltip} arrow placement="top">
-                            <IconButton aria-label={`More info about ${title}`}>
-                                <ToolTipIcon sx={{ color: 'text.secondary' }} />
-                            </IconButton>
-                        </MuiTooltip>
-                    )}
+                    {
+                        //TODO: Update tooltip to popover
+                        infoTooltip && (
+                            <MuiTooltip
+                                title={infoTooltip}
+                                arrow
+                                placement="top"
+                            >
+                                <IconButton
+                                    aria-label={`More info about ${title}`}
+                                >
+                                    <ToolTipIcon
+                                        sx={{ color: 'text.secondary' }}
+                                    />
+                                </IconButton>
+                            </MuiTooltip>
+                        )
+                    }
                 </Stack>
                 {subtitle && (
                     <Typography variant="subtitle1" color="text.secondary">
