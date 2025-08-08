@@ -24,7 +24,7 @@ export const Customers = () => {
             id="customer"
             sx={{ width: { xl: '33.33%', xs: '100%' } }}
         >
-            <List aria-labelledby="customer">
+            <List disablePadding aria-labelledby="customer">
                 {latestCustomers.map((customer, index) => (
                     <Fragment key={customer.email}>
                         <InfoListTile
