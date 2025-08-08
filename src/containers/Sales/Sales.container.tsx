@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { Chart, SectionWrapper } from '@components';
 import { useGetSalesData } from '@hooks';
 
@@ -14,26 +16,26 @@ import { useGetSalesData } from '@hooks';
 export const Sales = () => {
     const { data: salesData } = useGetSalesData();
 
-    const tickFormatter = {
-        yAxis: (value: number) => {
-            const num = typeof value === 'string' ? parseFloat(value) : value;
-            if (isNaN(num) || !isFinite(num)) return '0K';
+    const tickFormatter = useMemo(
+        () => ({
+            yAxis: (value: number) => {
+                if (isNaN(value) || !isFinite(value)) return '0K';
 
-            return `${(num / 1000).toFixed(0)}K`;
-        },
-        xAxis: (value: number | string) => {
-            const str = String(value);
-            if (!str || typeof str !== 'string') return '';
-            const parts = str.split(',');
+                return `${(value / 1000).toFixed(0)}K`;
+            },
+            xAxis: (value: number | string) => {
+                const [first] = String(value).split(',');
 
-            return parts[0];
-        },
-        tooltip: (value: number) => {
-            if (isNaN(value) || !isFinite(value)) return '$0k';
+                return first;
+            },
+            tooltip: (value: number) => {
+                if (isNaN(value) || !isFinite(value)) return '$0k';
 
-            return `$${(value / 1000).toFixed(0)}k`;
-        },
-    };
+                return `$${(value / 1000).toFixed(0)}k`;
+            },
+        }),
+        [],
+    );
 
     return (
         <SectionWrapper

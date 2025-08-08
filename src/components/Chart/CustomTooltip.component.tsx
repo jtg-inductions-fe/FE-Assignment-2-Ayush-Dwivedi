@@ -28,7 +28,7 @@ export const CustomTooltip = ({
     coordinate,
     tickFormatter,
 }: CustomTooltipProps) => {
-    if (!active || !payload || payload.length === 0) return null;
+    if (!active || !payload || payload.length === 0 || !coordinate) return null;
 
     const entry = payload[0] as { value: number; name: string };
     if (!entry || typeof entry !== 'object' || !('value' in entry)) return null;

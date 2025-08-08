@@ -1,11 +1,7 @@
 import { ResponsiveContainer } from 'recharts';
 
-import {
-    styled,
-    Tooltip,
-    tooltipClasses,
-    type TooltipProps,
-} from '@mui/material';
+import { Tooltip, tooltipClasses, type TooltipProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export const StyledChartContainer = styled(ResponsiveContainer)(
     ({
@@ -40,11 +36,11 @@ export const StyledTooltip = styled(
             classes={{ popper: className }}
         />
     ),
-)(({ theme: { palette, shadows } }) => ({
+)(({ theme: { palette, shadows, shape } }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
         backgroundColor: palette.background.paper,
         color: palette.text.primary,
-        borderRadius: 12,
+        borderRadius: shape.borderRadius * 3,
         boxShadow: shadows[8],
     },
     [`& .${tooltipClasses.arrow}`]: {

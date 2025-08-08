@@ -45,7 +45,7 @@ export const SectionWrapper = ({
                     </Typography>
                     {infoTooltip && (
                         <MuiTooltip title={infoTooltip} arrow placement="top">
-                            <IconButton>
+                            <IconButton aria-label={`More info about ${title}`}>
                                 <ToolTipIcon sx={{ color: 'text.secondary' }} />
                             </IconButton>
                         </MuiTooltip>
