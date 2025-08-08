@@ -3,6 +3,6 @@ export * from './ImageGallery';
 export * from './Menu';
 export * from './Link';
 export * from './SearchBar';
-export * from './SectionTile';
+export * from './InfoListTile';
 export * from './SectionWrapper';
 export * from './Sidebar';

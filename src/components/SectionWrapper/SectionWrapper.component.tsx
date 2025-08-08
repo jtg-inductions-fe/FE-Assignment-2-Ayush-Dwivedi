@@ -30,12 +30,14 @@ export const SectionWrapper = ({
     gap = 4,
     boxPadding = 6,
     id,
+    ...restProps
 }: SectionWrapperProps) => (
     <Paper
         component="section"
         aria-labelledby={id}
         elevation={1}
-        sx={{ p: boxPadding, borderRadius: 4 }}
+        {...restProps}
+        sx={{ p: boxPadding, borderRadius: 4, ...restProps.sx }}
     >
         <Stack gap={gap}>
             <header>
