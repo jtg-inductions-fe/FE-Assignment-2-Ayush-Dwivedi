@@ -2,6 +2,7 @@ import { Stack } from '@mui/material';
 
 import { ImageGallery } from '@components';
 import { IMAGE_GALLERY_DATA, IMAGE_GALLERY_LAYOUT } from '@constant';
+import { Sales } from '@containers';
 
 /**
  * HomePage
@@ -23,5 +24,6 @@ export const HomePage = () => (
                 maxNoOfImages={{ xs: 3, md: 4 }}
             />
         </section>
+        <Sales />
     </Stack>
 );
