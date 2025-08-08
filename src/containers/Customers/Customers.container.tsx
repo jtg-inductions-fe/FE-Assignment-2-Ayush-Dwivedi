@@ -34,10 +34,21 @@ export const Customers = () => {
                             rightNode={
                                 <Typography
                                     variant="body1"
-                                    title={`$${customer.amount}`}
+                                    title={customer.amount.toLocaleString(
+                                        'en-US',
+                                        {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        },
+                                    )}
                                     noWrap
                                 >
-                                    ${customer.amount}
+                                    {customer.amount.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                        maximumFractionDigits: 0,
+                                        useGrouping: false,
+                                    })}
                                 </Typography>
                             }
                             key={customer.email}
