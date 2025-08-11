@@ -22,11 +22,12 @@ import type { TableProps } from './Table.types';
  * <Table title="XYZ" data={tableData} config={tableConfig}>
  * ```
  */
-export const Table = <RowDataType,>({
+export const Table = <RowData,>({
     title,
     data,
     config,
-}: TableProps<RowDataType>) => (
+    getRowKey,
+}: TableProps<RowData>) => (
     <TableContainer>
         <MuiTable aria-label={`Table for ${title}`}>
             <TableHead>
@@ -60,47 +61,63 @@ export const Table = <RowDataType,>({
                 </TableRow>
             </TableHead>
             <TableBody>
-                {data.map((rowData, index) => (
-                    <TableRow
-                        key={index}
-                        sx={{
-                            '&:nth-of-type(even)': {
-                                backgroundColor: 'background.default',
-                            },
-                        }}
-                    >
-                        {config.map(({ type, renderConfig, selector }, idx) => {
-                            const value = selector(rowData);
-
-                            return (
-                                <TableCell sx={{ borderRadius: 3 }} key={idx}>
-                                    {type === 'text' ? (
-                                        <Typography
-                                            {...(typeof renderConfig ===
-                                            'function'
-                                                ? renderConfig(rowData)
-                                                : renderConfig || {})}
-                                        >
-                                            {value}
-                                        </Typography>
-                                    ) : type === 'badge' ? (
-                                        <Chip
-                                            {...(typeof renderConfig ===
-                                            'function'
-                                                ? renderConfig(rowData)
-                                                : renderConfig || {})}
-                                            label={value}
-                                        />
-                                    ) : typeof renderConfig === 'function' ? (
-                                        renderConfig(rowData)
-                                    ) : (
-                                        renderConfig
-                                    )}
-                                </TableCell>
-                            );
-                        })}
+                {data.length === 0 ? (
+                    <TableRow>
+                        <TableCell colSpan={config.length}>
+                            <Typography variant="body2" color="text.secondary">
+                                No data available
+                            </Typography>
+                        </TableCell>
                     </TableRow>
-                ))}
+                ) : (
+                    data.map((rowData, index) => (
+                        <TableRow
+                            key={getRowKey?.(rowData) ?? index}
+                            sx={{
+                                '&:nth-of-type(even)': {
+                                    backgroundColor: 'background.default',
+                                },
+                            }}
+                        >
+                            {config.map(
+                                ({ type, renderConfig, selector }, idx) => {
+                                    const value = selector(rowData);
+
+                                    return (
+                                        <TableCell
+                                            sx={{ borderRadius: 3 }}
+                                            key={idx}
+                                        >
+                                            {type === 'text' ? (
+                                                <Typography
+                                                    {...(typeof renderConfig ===
+                                                    'function'
+                                                        ? renderConfig(rowData)
+                                                        : renderConfig || {})}
+                                                >
+                                                    {value}
+                                                </Typography>
+                                            ) : type === 'badge' ? (
+                                                <Chip
+                                                    {...(typeof renderConfig ===
+                                                    'function'
+                                                        ? renderConfig(rowData)
+                                                        : renderConfig || {})}
+                                                    label={value}
+                                                />
+                                            ) : typeof renderConfig ===
+                                              'function' ? (
+                                                renderConfig(rowData)
+                                            ) : (
+                                                renderConfig
+                                            )}
+                                        </TableCell>
+                                    );
+                                },
+                            )}
+                        </TableRow>
+                    ))
+                )}
             </TableBody>
         </MuiTable>
     </TableContainer>

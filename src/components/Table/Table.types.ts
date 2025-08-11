@@ -57,7 +57,7 @@ export type ConfigType<RowData> =
     | TextConfigType<RowData>
     | BadgeConfigType<RowData>;
 
-export type TableProps<RowDataType> = {
+export type TableProps<RowData> = {
     /**
      * Title of the table.
      */
@@ -66,10 +66,15 @@ export type TableProps<RowDataType> = {
     /**
      * Array of table data items.
      */
-    data: RowDataType[];
+    data: RowData[];
 
     /**
      * Configuration for rendering table columns.
      */
-    config: ConfigType<RowDataType>[];
+    config: ConfigType<RowData>[];
+
+    /**
+     * Key to uniquely identify a row
+     */
+    getRowKey?: (rowData: RowData) => string | number;
 };

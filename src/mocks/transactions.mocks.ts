@@ -1,4 +1,4 @@
-export type TransactionRowDataType = {
+export type RowDataType = {
     name: string;
     date: string;
     amount: number;
@@ -8,7 +8,7 @@ export type TransactionRowDataType = {
     };
 };
 
-export const transactions: TransactionRowDataType[] = [
+export const transactions: RowDataType[] = [
     {
         name: 'Bonnie Green',
         date: 'Apr 23, 2021',

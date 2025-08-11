@@ -1,10 +1,10 @@
-import type { TransactionRowDataType } from 'mocks/transactions.mocks';
+import type { RowDataType } from 'mocks/transactions.mocks';
 
-import { Typography } from '@mui/material/';
+import { Typography } from '@mui/material';
 
 import type { ConfigType } from '@components';
 
-export const TABLE_CONFIG: ConfigType<TransactionRowDataType>[] = [
+export const TABLE_CONFIG: ConfigType<RowDataType>[] = [
     {
         title: 'Transaction',
         type: 'custom',
@@ -28,7 +28,7 @@ export const TABLE_CONFIG: ConfigType<TransactionRowDataType>[] = [
         title: 'Date & Time',
         type: 'text',
         renderConfig: {
-            color: 'textSecondary',
+            color: 'text.secondary',
             variant: 'subtitle1',
             fontWeight: 'fontWeightRegular',
         },
