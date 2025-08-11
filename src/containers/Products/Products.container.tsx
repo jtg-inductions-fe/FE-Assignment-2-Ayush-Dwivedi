@@ -24,7 +24,7 @@ export const Products = () => {
             id="top-products"
             sx={{ flexGrow: 1 }}
         >
-            <List aria-labelledby="top-products">
+            <List disablePadding aria-labelledby="top-products">
                 {topProducts.map(({ title, techStack, sales, id }, index) => (
                     <Fragment key={id}>
                         <InfoListTile
