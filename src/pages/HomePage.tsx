@@ -13,7 +13,7 @@ import { Customers, Products, Sales, Transactions } from '@containers';
  * <HomePage />
  */
 export const HomePage = () => (
-    <Stack padding={4} gap={4}>
+    <Stack gap={4}>
         <section aria-label="Image Gallery section">
             <ImageGallery
                 imageGalleryData={{
