@@ -2,7 +2,7 @@ import { Stack } from '@mui/material';
 
 import { ImageGallery } from '@components';
 import { IMAGE_GALLERY_DATA, IMAGE_GALLERY_LAYOUT } from '@constant';
-import { Sales } from '@containers';
+import { Customers, Sales } from '@containers';
 
 /**
  * HomePage
@@ -25,5 +25,8 @@ export const HomePage = () => (
             />
         </section>
         <Sales />
+        <Stack gap={4} sx={{ flexDirection: { md: 'column', xl: 'row' } }}>
+            <Customers />
+        </Stack>
     </Stack>
 );
