@@ -43,7 +43,7 @@ export const Products = () => {
                                 </Typography>
                             }
                         />
-                        {!(index === topProducts.length - 1) && (
+                        {index !== topProducts.length - 1 && (
                             <Divider aria-hidden />
                         )}
                     </Fragment>
