@@ -1,0 +1,44 @@
+import { ListItem, Stack, Typography } from '@mui/material';
+
+import { Link } from '@components';
+
+import { StyledPaper } from './Footer.styles';
+import type { FooterProps } from './Footer.types';
+
+/**
+ * Footer component
+ * Provides footer component with copyright info and social links
+ * @component
+ * @returns Footer component with proper layout and links
+ *
+ * @example usage
+ * ```tsx
+ * <Footer socialLinks={FOOTER_LINKS} />
+ * ```
+ */
+export const Footer = ({ socialLinks }: FooterProps) => (
+    <StyledPaper elevation={0}>
+        <Typography
+            variant="body1"
+            fontWeight="fontWeightRegular"
+            color="text.secondary"
+        >
+            &copy; {new Date().getFullYear()} ThemesBerg, LLC. All rights
+            reserved.
+        </Typography>
+        <Stack
+            component="ul"
+            aria-label="footer controls"
+            direction="row"
+            flexWrap="wrap"
+        >
+            {socialLinks.map(({ icon: SocialIcon, href }) => (
+                <ListItem key={href} sx={{ width: 'fit-content' }}>
+                    <Link href={href}>
+                        <SocialIcon sx={{ color: 'text.primary' }} />
+                    </Link>
+                </ListItem>
+            ))}
+        </Stack>
+    </StyledPaper>
+);
