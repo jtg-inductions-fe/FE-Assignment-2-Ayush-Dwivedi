@@ -1,5 +1,4 @@
 import {
-    Chip,
     Table as MuiTable,
     TableBody,
     TableCell,
@@ -9,6 +8,7 @@ import {
     Typography,
 } from '@mui/material';
 
+import { CellRenderer } from './CellRenderer.component';
 import type { TableProps } from './Table.types';
 
 /**
@@ -27,24 +27,21 @@ export const Table = <RowData,>({
     data,
     config,
     getRowKey,
+    ...restProps
 }: TableProps<RowData>) => (
-    <TableContainer>
-        <MuiTable aria-label={`Table for ${title}`}>
+    <TableContainer sx={{ borderRadius: 3 }}>
+        <MuiTable aria-label={`Table for ${title}`} {...restProps}>
             <TableHead>
                 <TableRow
                     sx={{
                         backgroundColor: 'background.default',
                     }}
                 >
-                    {config.map((column, index) => (
+                    {config.map((column) => (
                         <TableCell
                             sx={{
                                 borderBottom: '1px solid',
                                 borderBottomColor: 'divider',
-                                ...(index === 0 && { borderTopLeftRadius: 12 }),
-                                ...(index === config.length - 1 && {
-                                    borderTopRightRadius: 12,
-                                }),
                             }}
                             key={column.title}
                         >
@@ -79,42 +76,14 @@ export const Table = <RowData,>({
                                 },
                             }}
                         >
-                            {config.map(
-                                ({ type, renderConfig, selector }, idx) => {
-                                    const value = selector(rowData);
-
-                                    return (
-                                        <TableCell
-                                            sx={{ borderRadius: 3 }}
-                                            key={idx}
-                                        >
-                                            {type === 'text' ? (
-                                                <Typography
-                                                    {...(typeof renderConfig ===
-                                                    'function'
-                                                        ? renderConfig(rowData)
-                                                        : renderConfig || {})}
-                                                >
-                                                    {value}
-                                                </Typography>
-                                            ) : type === 'badge' ? (
-                                                <Chip
-                                                    {...(typeof renderConfig ===
-                                                    'function'
-                                                        ? renderConfig(rowData)
-                                                        : renderConfig || {})}
-                                                    label={value}
-                                                />
-                                            ) : typeof renderConfig ===
-                                              'function' ? (
-                                                renderConfig(rowData)
-                                            ) : (
-                                                renderConfig
-                                            )}
-                                        </TableCell>
-                                    );
-                                },
-                            )}
+                            {config.map((cellConfig, idx) => (
+                                <TableCell sx={{ borderRadius: 3 }} key={idx}>
+                                    <CellRenderer
+                                        config={cellConfig}
+                                        rowData={rowData}
+                                    />
+                                </TableCell>
+                            ))}
                         </TableRow>
                     ))
                 )}

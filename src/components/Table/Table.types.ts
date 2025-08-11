@@ -1,6 +1,10 @@
 import { type ReactNode } from 'react';
 
-import { type ChipProps, type TypographyProps } from '@mui/material';
+import type {
+    ChipProps,
+    TableProps as MuiTableProps,
+    TypographyProps,
+} from '@mui/material';
 
 type BaseConfigType<RowData> = {
     /**
@@ -52,7 +56,7 @@ export type BadgeConfigType<RowData> = BaseConfigType<RowData> & {
 };
 
 // Union of all config types
-export type ConfigType<RowData> =
+export type CellConfigType<RowData> =
     | CustomConfigType<RowData>
     | TextConfigType<RowData>
     | BadgeConfigType<RowData>;
@@ -71,10 +75,22 @@ export type TableProps<RowData> = {
     /**
      * Configuration for rendering table columns.
      */
-    config: ConfigType<RowData>[];
+    config: CellConfigType<RowData>[];
 
     /**
      * Key to uniquely identify a row
      */
     getRowKey?: (rowData: RowData) => string | number;
+} & MuiTableProps;
+
+export type CellRendererProps<RowData> = {
+    /**
+     * Config to render cell data
+     */
+    config: CellConfigType<RowData>;
+
+    /**
+     * RowData to get value for cell
+     */
+    rowData: RowData;
 };

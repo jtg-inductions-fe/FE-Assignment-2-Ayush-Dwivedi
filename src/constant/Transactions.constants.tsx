@@ -1,22 +1,24 @@
 import type { RowDataType } from 'mocks/transactions.mocks';
 
-import { Typography } from '@mui/material';
+import { type ChipProps, Typography } from '@mui/material';
 
-import type { ConfigType } from '@components';
+import type { CellConfigType } from '@components';
 
-export const TABLE_CONFIG: ConfigType<RowDataType>[] = [
+export const TRANSACTIONS_TABLE_CONFIG: CellConfigType<RowDataType>[] = [
     {
         title: 'Transaction',
         type: 'custom',
-        renderConfig: ({ amount, name, status }) => {
-            let message = 'Payment from ';
-            if (status.value === 'cancelled') message = 'Payment failed from ';
-            else if (amount < 0) message = 'Payment refund to ';
+        renderConfig: ({ amount, name, status }: RowDataType) => {
+            const messageMap = {
+                cancelled: 'Payment failed from ',
+                completed: amount < 0 ? 'Payment refund to ' : 'Payment from ',
+                'in-progress': 'Payment pending from ',
+            };
 
             return (
                 <Typography variant="subtitle1">
                     <Typography component="span" fontWeight="fontWeightRegular">
-                        {message}
+                        {messageMap[status.value]}
                     </Typography>
                     {name}
                 </Typography>
@@ -52,13 +54,12 @@ export const TABLE_CONFIG: ConfigType<RowDataType>[] = [
     {
         title: 'Status',
         type: 'badge',
-        renderConfig: ({ status: { value } }) => ({
-            color:
-                value === 'completed'
-                    ? 'success'
-                    : value === 'cancelled'
-                      ? 'error'
-                      : 'info',
+        renderConfig: ({ status }) => ({
+            color: ({
+                completed: 'success',
+                cancelled: 'error',
+                'in-progress': 'info',
+            }[status.value] || 'default') as ChipProps['color'],
         }),
         selector: (rowData) => rowData.status.label,
     },
