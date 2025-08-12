@@ -65,7 +65,11 @@ export const SectionWrapper = ({
                     }
                 </Stack>
                 {subtitle && (
-                    <Typography variant="subtitle1" color="text.secondary">
+                    <Typography
+                        variant="subtitle1"
+                        color="text.secondary"
+                        fontWeight="fontWeightRegular"
+                    >
                         {subtitle}
                     </Typography>
                 )}

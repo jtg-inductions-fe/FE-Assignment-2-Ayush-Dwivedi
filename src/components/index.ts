@@ -6,3 +6,4 @@ export * from './SearchBar';
 export * from './InfoListTile';
 export * from './SectionWrapper';
 export * from './Sidebar';
+export * from './Table';

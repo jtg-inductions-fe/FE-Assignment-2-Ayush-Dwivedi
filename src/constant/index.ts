@@ -5,3 +5,4 @@ export {
     IMAGE_GALLERY_DATA,
     IMAGE_GALLERY_LAYOUT,
 } from './ImageGallery.constants';
+export { TRANSACTIONS_TABLE_CONFIG } from './Transactions.constants';

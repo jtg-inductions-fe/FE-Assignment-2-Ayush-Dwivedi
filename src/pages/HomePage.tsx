@@ -2,7 +2,7 @@ import { Stack } from '@mui/material';
 
 import { ImageGallery } from '@components';
 import { IMAGE_GALLERY_DATA, IMAGE_GALLERY_LAYOUT } from '@constant';
-import { Customers, Products, Sales } from '@containers';
+import { Customers, Products, Sales, Transactions } from '@containers';
 
 /**
  * HomePage
@@ -29,5 +29,6 @@ export const HomePage = () => (
             <Customers />
             <Products />
         </Stack>
+        <Transactions />
     </Stack>
 );
