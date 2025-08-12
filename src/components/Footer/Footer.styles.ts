@@ -6,6 +6,6 @@ export const StyledPaper = styled(Paper)(({ theme: { spacing, shape } }) => ({
     borderRadius: shape.borderRadius * 3,
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
     flexWrap: 'wrap',
+    gap: spacing(8),
 })) as typeof Paper;

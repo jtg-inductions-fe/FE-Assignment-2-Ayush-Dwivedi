@@ -31,9 +31,16 @@ export const Footer = ({ socialLinks }: FooterProps) => (
             aria-label="footer controls"
             direction="row"
             flexWrap="wrap"
+            gap={6}
+            margin={0}
+            padding={0}
         >
             {socialLinks.map(({ icon: SocialIcon, href, label }) => (
-                <ListItem key={href} sx={{ width: 'fit-content' }}>
+                <ListItem
+                    key={href}
+                    disablePadding
+                    sx={{ width: 'fit-content' }}
+                >
                     <Link
                         href={href}
                         title={label}
