@@ -50,7 +50,7 @@ export const Footer = ({ socialLinks }: FooterProps) => (
                     >
                         <SocialIcon
                             aria-hidden
-                            sx={{ color: 'text.primary' }}
+                            sx={{ color: 'text.primary', display: 'block' }}
                         />
                     </Link>
                 </ListItem>
