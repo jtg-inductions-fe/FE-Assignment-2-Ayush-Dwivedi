@@ -1,11 +1,4 @@
-import React from 'react';
-
-import {
-    Chip,
-    type ChipProps,
-    Typography,
-    type TypographyProps,
-} from '@mui/material';
+import { Chip, Typography } from '@mui/material';
 
 import type { CellRendererProps } from './Table.types';
 
@@ -24,27 +17,23 @@ export const CellRenderer = <RowData,>({
     config,
     rowData,
 }: CellRendererProps<RowData>) => {
-    const { renderConfig, selector, type } = config;
+    const { renderConfig, selector } = config;
     const cellValue = selector(rowData);
     const cellConfig =
         typeof renderConfig === 'function'
             ? renderConfig(rowData)
             : renderConfig || {};
 
-    switch (type) {
+    switch (cellConfig.type) {
         case 'text':
-            return (
-                <Typography {...(cellConfig as TypographyProps)}>
-                    {cellValue}
-                </Typography>
-            );
+            return <Typography {...cellConfig}>{cellValue}</Typography>;
         case 'badge':
-            return <Chip {...(cellConfig as ChipProps)} label={cellValue} />;
+            return <Chip {...cellConfig} label={cellValue} />;
+        case 'custom':
+            return typeof cellConfig.render === 'function'
+                ? cellConfig.render(rowData)
+                : cellConfig.render;
         default:
-            if (React.isValidElement(cellConfig)) {
-                return cellConfig;
-            }
-
-            return null;
+            return cellValue;
     }
 };

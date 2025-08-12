@@ -6,7 +6,7 @@ import type {
     TypographyProps,
 } from '@mui/material';
 
-type BaseConfigType<RowData> = {
+export type TableConfigType<RowData> = {
     /**
      * Title of the column.
      */
@@ -16,10 +16,17 @@ type BaseConfigType<RowData> = {
      * Function to extract the value from a row.
      */
     selector: (row: RowData) => string | number;
+
+    /**
+     * Config to render customized output based on type
+     */
+    renderConfig:
+        | ((rowData: RowData) => CellConfigType<RowData>)
+        | CellConfigType<RowData>;
 };
 
 // Specific config types
-export type CustomConfigType<RowData> = BaseConfigType<RowData> & {
+export type CustomConfigType<RowData> = {
     /**
      * Column type.
      */
@@ -28,38 +35,28 @@ export type CustomConfigType<RowData> = BaseConfigType<RowData> & {
     /**
      * Custom render configuration or function.
      */
-    renderConfig?: ReactNode | ((row: RowData) => ReactNode);
+    render: ReactNode | ((row: RowData) => ReactNode);
 };
 
-export type TextConfigType<RowData> = BaseConfigType<RowData> & {
+export type TextConfigType = {
     /**
      * Column type.
      */
     type: 'text';
+} & TypographyProps;
 
-    /**
-     * Typography configuration or function.
-     */
-    renderConfig?: TypographyProps | ((row: RowData) => TypographyProps);
-};
-
-export type BadgeConfigType<RowData> = BaseConfigType<RowData> & {
+export type BadgeConfigType = {
     /**
      * Column type.
      */
     type: 'badge';
-
-    /**
-     * Chip configuration or function.
-     */
-    renderConfig?: ChipProps | ((row: RowData) => ChipProps);
-};
+} & ChipProps;
 
 // Union of all config types
 export type CellConfigType<RowData> =
     | CustomConfigType<RowData>
-    | TextConfigType<RowData>
-    | BadgeConfigType<RowData>;
+    | TextConfigType
+    | BadgeConfigType;
 
 export type TableProps<RowData> = {
     /**
@@ -75,7 +72,7 @@ export type TableProps<RowData> = {
     /**
      * Configuration for rendering table columns.
      */
-    config: CellConfigType<RowData>[];
+    config: TableConfigType<RowData>[];
 
     /**
      * Key to uniquely identify a row
@@ -87,7 +84,7 @@ export type CellRendererProps<RowData> = {
     /**
      * Config to render cell data
      */
-    config: CellConfigType<RowData>;
+    config: TableConfigType<RowData>;
 
     /**
      * RowData to get value for cell
