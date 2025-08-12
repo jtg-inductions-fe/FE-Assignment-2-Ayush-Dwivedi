@@ -8,3 +8,4 @@ export {
 export { TRANSACTIONS_TABLE_CONFIG } from './Transactions.constants';
 export { FOOTER_LINKS } from './Footer.constants';
 export { ERROR_PAGE_CONFIG } from './ErrorBoundary.constants';
+export { NOT_FOUND_CONFIG } from './NotFoundPage.constants';
