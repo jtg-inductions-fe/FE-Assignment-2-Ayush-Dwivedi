@@ -1,5 +1,7 @@
 import { type RouteObject } from 'react-router';
 
+import { Fallback } from '@components';
+import { NOT_FOUND_CONFIG } from '@constant';
 import { RootLayout } from '@layouts';
 import { HomePage } from '@pages';
 
@@ -25,7 +27,7 @@ export const routes: RouteObject[] = [
         children: [
             {
                 path: '*',
-                element: <h1>404 Not Found</h1>,
+                element: <Fallback {...NOT_FOUND_CONFIG} />,
             },
         ],
     },
