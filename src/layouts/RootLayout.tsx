@@ -4,8 +4,9 @@ import { Outlet } from 'react-router';
 
 import { Grid2 as Grid, useMediaQuery } from '@mui/material';
 
-import { Sidebar } from '@components';
+import { Footer, Sidebar } from '@components';
 import {
+    FOOTER_LINKS,
     HEADER_HEIGHT,
     SIDEBAR_BOTTOM_LINKS,
     SIDEBAR_LIST,
@@ -57,11 +58,17 @@ export const RootLayout = ({
                         />
                     </Grid>
                 )}
-                <Grid size="grow">
+                <Grid
+                    size="grow"
+                    padding={4}
+                    display="flex"
+                    flexDirection="column"
+                    gap={4}
+                >
                     <main>
                         <Outlet />
                     </main>
-                    {!hideFooter && <footer>Footer</footer>}
+                    {!hideFooter && <Footer socialLinks={FOOTER_LINKS} />}
                 </Grid>
             </Grid>
         </Grid>
