@@ -60,7 +60,7 @@ export const Table = <RowData,>({
             <TableBody>
                 {
                     /* Empty State */
-                    data.length === 0 ? (
+                    !data.length && (
                         <TableRow>
                             <TableCell colSpan={config.length}>
                                 <Typography
@@ -71,8 +71,11 @@ export const Table = <RowData,>({
                                 </Typography>
                             </TableCell>
                         </TableRow>
-                    ) : (
-                        /* Rendering Rows */
+                    )
+                }
+                {
+                    /* Rendering Rows */
+                    !!data.length &&
                         data.map((rowData, index) => (
                             <TableRow
                                 key={getRowKey?.(rowData) ?? index}
@@ -95,7 +98,6 @@ export const Table = <RowData,>({
                                 ))}
                             </TableRow>
                         ))
-                    )
                 }
             </TableBody>
         </MuiTable>

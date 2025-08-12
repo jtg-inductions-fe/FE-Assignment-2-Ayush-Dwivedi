@@ -22,7 +22,7 @@ export const CellRenderer = <RowData,>({
     const cellConfig =
         typeof renderConfig === 'function'
             ? renderConfig(rowData)
-            : renderConfig || {};
+            : renderConfig;
 
     switch (cellConfig.type) {
         case 'text':
