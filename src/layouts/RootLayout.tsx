@@ -68,11 +68,7 @@ export const RootLayout = ({
                     <main>
                         <Outlet />
                     </main>
-                    {!hideFooter && (
-                        <footer>
-                            <Footer socialLinks={FOOTER_LINKS} />
-                        </footer>
-                    )}
+                    {!hideFooter && <Footer socialLinks={FOOTER_LINKS} />}
                 </Grid>
             </Grid>
         </Grid>
