@@ -58,35 +58,45 @@ export const Table = <RowData,>({
                 </TableRow>
             </TableHead>
             <TableBody>
-                {data.length === 0 ? (
-                    <TableRow>
-                        <TableCell colSpan={config.length}>
-                            <Typography variant="body2" color="text.secondary">
-                                No data available
-                            </Typography>
-                        </TableCell>
-                    </TableRow>
-                ) : (
-                    data.map((rowData, index) => (
-                        <TableRow
-                            key={getRowKey?.(rowData) ?? index}
-                            sx={{
-                                '&:nth-of-type(even)': {
-                                    backgroundColor: 'background.default',
-                                },
-                            }}
-                        >
-                            {config.map((cellConfig, idx) => (
-                                <TableCell sx={{ borderRadius: 3 }} key={idx}>
-                                    <CellRenderer
-                                        config={cellConfig}
-                                        rowData={rowData}
-                                    />
-                                </TableCell>
-                            ))}
+                {
+                    /* Empty State */
+                    data.length === 0 ? (
+                        <TableRow>
+                            <TableCell colSpan={config.length}>
+                                <Typography
+                                    variant="body2"
+                                    color="text.secondary"
+                                >
+                                    No data available
+                                </Typography>
+                            </TableCell>
                         </TableRow>
-                    ))
-                )}
+                    ) : (
+                        /* Rendering Rows */
+                        data.map((rowData, index) => (
+                            <TableRow
+                                key={getRowKey?.(rowData) ?? index}
+                                sx={{
+                                    '&:nth-of-type(even)': {
+                                        backgroundColor: 'background.default',
+                                    },
+                                }}
+                            >
+                                {config.map((cellConfig, idx) => (
+                                    <TableCell
+                                        sx={{ borderRadius: 3 }}
+                                        key={idx}
+                                    >
+                                        <CellRenderer
+                                            config={cellConfig}
+                                            rowData={rowData}
+                                        />
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))
+                    )
+                }
             </TableBody>
         </MuiTable>
     </TableContainer>
