@@ -4,8 +4,9 @@ import { Outlet } from 'react-router';
 
 import { Grid2 as Grid, useMediaQuery } from '@mui/material';
 
-import { Footer, Sidebar } from '@components';
+import { ErrorBoundary, Fallback, Footer, Sidebar } from '@components';
 import {
+    ERROR_PAGE_CONFIG,
     FOOTER_LINKS,
     HEADER_HEIGHT,
     SIDEBAR_BOTTOM_LINKS,
@@ -65,10 +66,14 @@ export const RootLayout = ({
                     flexDirection="column"
                     gap={4}
                 >
-                    <main>
-                        <Outlet />
-                    </main>
-                    {!hideFooter && <Footer socialLinks={FOOTER_LINKS} />}
+                    <ErrorBoundary
+                        fallback={<Fallback {...ERROR_PAGE_CONFIG} />}
+                    >
+                        <main>
+                            <Outlet />
+                        </main>
+                        {!hideFooter && <Footer socialLinks={FOOTER_LINKS} />}
+                    </ErrorBoundary>
                 </Grid>
             </Grid>
         </Grid>

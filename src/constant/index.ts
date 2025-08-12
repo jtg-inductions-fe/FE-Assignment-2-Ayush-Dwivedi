@@ -7,3 +7,4 @@ export {
 } from './ImageGallery.constants';
 export { TRANSACTIONS_TABLE_CONFIG } from './Transactions.constants';
 export { FOOTER_LINKS } from './Footer.constants';
+export { ERROR_PAGE_CONFIG } from './ErrorBoundary.constants';
