@@ -10,6 +10,11 @@ export type FooterLink = {
      * URL for link navigation
      */
     href: string;
+
+    /**
+     * Label for title of footer link
+     */
+    label: string;
 };
 
 export type FooterProps = {

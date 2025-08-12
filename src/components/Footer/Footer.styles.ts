@@ -8,4 +8,4 @@ export const StyledPaper = styled(Paper)(({ theme: { spacing, shape } }) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'wrap',
-}));
+})) as typeof Paper;

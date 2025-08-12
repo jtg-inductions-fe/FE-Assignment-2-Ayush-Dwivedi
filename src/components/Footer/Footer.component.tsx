@@ -17,7 +17,7 @@ import type { FooterProps } from './Footer.types';
  * ```
  */
 export const Footer = ({ socialLinks }: FooterProps) => (
-    <StyledPaper elevation={0}>
+    <StyledPaper component="footer" aria-label="Site footer" elevation={0}>
         <Typography
             variant="body1"
             fontWeight="fontWeightRegular"
@@ -32,10 +32,19 @@ export const Footer = ({ socialLinks }: FooterProps) => (
             direction="row"
             flexWrap="wrap"
         >
-            {socialLinks.map(({ icon: SocialIcon, href }) => (
+            {socialLinks.map(({ icon: SocialIcon, href, label }) => (
                 <ListItem key={href} sx={{ width: 'fit-content' }}>
-                    <Link href={href}>
-                        <SocialIcon sx={{ color: 'text.primary' }} />
+                    <Link
+                        href={href}
+                        title={label}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                    >
+                        <SocialIcon
+                            aria-hidden
+                            sx={{ color: 'text.primary' }}
+                        />
                     </Link>
                 </ListItem>
             ))}
