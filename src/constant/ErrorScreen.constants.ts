@@ -6,7 +6,7 @@ export const ERROR_PAGE_CONFIG = {
     error: {
         title: 'Something has gone seriously wrong',
         description:
-            "It's always time for a coffee break We should be back by the time you finish your coffee.",
+            "It's always time for a coffee break. We should be back by the time you finish your coffee.",
         heroImg: {
             src: errorImg,
             alt: 'An animated illustration of a woman daydreaming about coffee',
