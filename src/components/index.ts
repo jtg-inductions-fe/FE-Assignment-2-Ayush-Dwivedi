@@ -1,6 +1,6 @@
 export * from './Chart';
 export * from './ErrorBoundary';
-export * from './Fallback';
+export * from './ErrorScreen';
 export * from './Footer';
 export * from './ImageGallery';
 export * from './InfoListTile';

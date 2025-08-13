@@ -12,7 +12,8 @@
             "@components": ["components/index"],
             "@containers": ["containers/index"],
             "@utils": ["utils/index"],
-            "@hooks": ["hooks/index"]
+            "@hooks": ["hooks/index"],
+            "@contexts": ["contexts/index"]
         }
     }
 }

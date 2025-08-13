@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ErrorBoundaryContext } from '@contexts';
+
 import type {
     ErrorBoundaryProps,
     ErrorBoundaryState,
@@ -12,7 +14,7 @@ import type {
  *
  * @example usage
  * ```tsx
- * <ErrorBoundary>{children}<ErrorBoundary/>
+ * <ErrorBoundary>{children}</ErrorBoundary>
  * ```
  */
 export class ErrorBoundary extends React.Component<
@@ -26,7 +28,12 @@ export class ErrorBoundary extends React.Component<
     constructor(props: ErrorBoundaryProps) {
         super(props);
         this.state = { hasError: false };
+        this.resetErrorBoundary = this.resetErrorBoundary.bind(this);
     }
+
+    resetErrorBoundary = () => {
+        this.setState({ hasError: false });
+    };
 
     componentDidCatch() {
         // Update state to show the fallback UI
@@ -35,9 +42,21 @@ export class ErrorBoundary extends React.Component<
 
     render() {
         if (this.state.hasError) {
-            return this.props.fallback;
+            return (
+                <ErrorBoundaryContext.Provider
+                    value={{ resetErrorBoundary: this.resetErrorBoundary }}
+                >
+                    {this.props.fallback}
+                </ErrorBoundaryContext.Provider>
+            );
         }
 
-        return this.props.children;
+        return (
+            <ErrorBoundaryContext.Provider
+                value={{ resetErrorBoundary: this.resetErrorBoundary }}
+            >
+                {this.props.children}
+            </ErrorBoundaryContext.Provider>
+        );
     }
 }

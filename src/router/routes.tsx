@@ -1,7 +1,6 @@
 import { type RouteObject } from 'react-router';
 
-import { Fallback } from '@components';
-import { NOT_FOUND_CONFIG } from '@constant';
+import { ErrorBoundary, ErrorScreen } from '@components';
 import { RootLayout } from '@layouts';
 import { HomePage } from '@pages';
 
@@ -12,7 +11,11 @@ import { HomePage } from '@pages';
 export const routes: RouteObject[] = [
     {
         path: '/',
-        element: <RootLayout />,
+        element: (
+            <ErrorBoundary fallback={<ErrorScreen />}>
+                <RootLayout />
+            </ErrorBoundary>
+        ),
         children: [
             {
                 index: true,
@@ -27,7 +30,7 @@ export const routes: RouteObject[] = [
         children: [
             {
                 path: '*',
-                element: <Fallback {...NOT_FOUND_CONFIG} />,
+                element: <ErrorScreen status={404} />,
             },
         ],
     },

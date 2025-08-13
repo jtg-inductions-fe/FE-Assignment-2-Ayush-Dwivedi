@@ -3947,6 +3947,11 @@ victory-vendor@^37.0.2:
     d3-time "^3.0.0"
     d3-timer "^3.0.1"
 
+vite-bundle-analyzer@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/vite-bundle-analyzer/-/vite-bundle-analyzer-1.2.1.tgz#1767ce9684283310a799747a87e1b871cd81ee7b"
+  integrity sha512-dpJMQBnVjieMirpHILmgGsZAWU8fGyqK3ckj6O48wdy3fARlH7Mnz7BfYFUsd3ZdbuXjsYe7t5I/q2zsMOd5ig==
+
 vite-plugin-image-optimizer@1.1.8:
   version "1.1.8"
   resolved "https://registry.npmjs.org/vite-plugin-image-optimizer/-/vite-plugin-image-optimizer-1.1.8.tgz"
