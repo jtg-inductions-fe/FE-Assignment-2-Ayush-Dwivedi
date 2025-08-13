@@ -4,15 +4,16 @@ type ErrorBoundaryContextType = {
     resetErrorBoundary: () => void;
 };
 
-export const ErrorBoundaryContext = createContext<ErrorBoundaryContextType>({
-    resetErrorBoundary: () => {},
-});
+export const ErrorBoundaryContext = createContext<
+    ErrorBoundaryContextType | undefined
+>(undefined);
+ErrorBoundaryContext.displayName = 'ErrorBoundaryContext';
 
-export const useErrorBoundaryContext = () => {
+export const useErrorBoundaryContext = (): ErrorBoundaryContextType => {
     const context = useContext(ErrorBoundaryContext);
     if (context === undefined)
         throw new Error(
-            'ErrorBoundaryContext used outside of ErrorBoundaryContextProvider',
+            'ErrorBoundaryContext must be used within ErrorBoundaryContext.Provider',
         );
 
     return context;
