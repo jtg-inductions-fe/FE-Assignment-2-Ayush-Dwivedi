@@ -35,26 +35,17 @@ export class ErrorBoundary extends React.Component<
     };
 
     componentDidCatch() {
-        // Update state to show the fallback UI
         this.setState({ hasError: true });
     }
 
     render() {
-        if (this.state.hasError) {
-            return (
-                <ErrorBoundaryContext.Provider
-                    value={{ resetErrorBoundary: this.resetErrorBoundary }}
-                >
-                    {this.props.fallback}
-                </ErrorBoundaryContext.Provider>
-            );
-        }
-
         return (
             <ErrorBoundaryContext.Provider
                 value={{ resetErrorBoundary: this.resetErrorBoundary }}
             >
-                {this.props.children}
+                {this.state.hasError
+                    ? this.props.fallback
+                    : this.props.children}
             </ErrorBoundaryContext.Provider>
         );
     }
