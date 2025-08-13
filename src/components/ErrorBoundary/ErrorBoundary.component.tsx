@@ -9,7 +9,7 @@ import type {
 
 /**
  * ErrorBoundary component
- * Extends React.component to catch errors from children
+ * Extends React.Component to catch errors from children
  * @component
  *
  * @example usage

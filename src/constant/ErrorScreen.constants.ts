@@ -18,7 +18,7 @@ export const ERROR_PAGE_CONFIG = {
             'Oops! Looks like you followed a bad link. If you think this is a problem with us, please tell us.',
         heroImg: {
             src: notFoundImg,
-            alt: 'An illustration with text 404',
+            alt: '404 — Page not found illustration',
         },
     },
 } satisfies Record<string | number, ErrorScreenConfig>;
