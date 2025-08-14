@@ -9,6 +9,10 @@ export const ErrorBoundaryContext = createContext<
 >(undefined);
 ErrorBoundaryContext.displayName = 'ErrorBoundaryContext';
 
+/**
+ * Access the ErrorBoundary context. Throws if used outside the provider.
+ * Typically provided by <ErrorBoundary> wrapping the routed tree.
+ */
 export const useErrorBoundaryContext = (): ErrorBoundaryContextType => {
     const context = useContext(ErrorBoundaryContext);
     if (context === undefined)

@@ -17,11 +17,9 @@ import type { ErrorScreenProps } from './ErrorScreen.type';
  * <ErrorScreen status={404} />
  * ```
  */
-export const ErrorScreen = ({ status }: ErrorScreenProps) => {
+export const ErrorScreen = ({ status = 'error' }: ErrorScreenProps) => {
     const { resetErrorBoundary } = useErrorBoundaryContext();
-    const { title, description, heroImg } = status
-        ? ERROR_PAGE_CONFIG[status]
-        : ERROR_PAGE_CONFIG['error'];
+    const { title, description, heroImg } = ERROR_PAGE_CONFIG[status];
 
     return (
         <Stack component="section" gap={4} aria-labelledby="fallback-head">
@@ -29,9 +27,7 @@ export const ErrorScreen = ({ status }: ErrorScreenProps) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{
-                    height: { md: 476, xs: 250 },
-                }}
+                height={{ md: 476, xs: 250 }}
             >
                 <Box
                     component="img"
@@ -64,7 +60,7 @@ export const ErrorScreen = ({ status }: ErrorScreenProps) => {
                 >
                     Go back home
                 </Button>
-                {(!status || status === 'error') && (
+                {status === 'error' && (
                     <Button
                         onClick={resetErrorBoundary}
                         variant="text"
