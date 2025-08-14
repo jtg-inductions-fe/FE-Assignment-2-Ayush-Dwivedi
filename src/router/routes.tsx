@@ -1,5 +1,6 @@
 import { type RouteObject } from 'react-router';
 
+import { ErrorBoundary, ErrorScreen } from '@components';
 import { RootLayout } from '@layouts';
 import { HomePage } from '@pages';
 
@@ -10,7 +11,11 @@ import { HomePage } from '@pages';
 export const routes: RouteObject[] = [
     {
         path: '/',
-        element: <RootLayout />,
+        element: (
+            <ErrorBoundary fallback={<ErrorScreen />}>
+                <RootLayout />
+            </ErrorBoundary>
+        ),
         children: [
             {
                 index: true,
@@ -25,7 +30,7 @@ export const routes: RouteObject[] = [
         children: [
             {
                 path: '*',
-                element: <h1>404 Not Found</h1>,
+                element: <ErrorScreen status={404} />,
             },
         ],
     },

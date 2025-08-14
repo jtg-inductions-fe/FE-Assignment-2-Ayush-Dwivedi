@@ -1,5 +1,6 @@
 import type { UserConfig } from 'vite';
 import { defineConfig, loadEnv } from 'vite';
+import analyzer from 'vite-bundle-analyzer';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -7,7 +8,7 @@ import react from '@vitejs/plugin-react';
 
 /* Common Config for both PROD and DEV mode */
 const commonConfig: UserConfig = {
-    plugins: [react(), tsconfigPaths()],
+    plugins: [react(), tsconfigPaths(), analyzer()],
     /* Customizing build folder structure */
     build: {
         /* 
