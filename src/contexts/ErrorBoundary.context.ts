@@ -17,7 +17,7 @@ export const useErrorBoundaryContext = (): ErrorBoundaryContextType => {
     const context = useContext(ErrorBoundaryContext);
     if (context === undefined)
         throw new Error(
-            'ErrorBoundaryContext must be used within <ErrorBoundary />',
+            'useErrorBoundaryContext must be used within <ErrorBoundary />',
         );
 
     return context;
