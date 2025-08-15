@@ -66,6 +66,7 @@ export const SectionWrapper = ({
                 </Stack>
                 {subtitle && (
                     <Typography
+                        component="p"
                         variant="subtitle1"
                         color="text.secondary"
                         fontWeight="fontWeightRegular"

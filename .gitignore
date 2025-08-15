@@ -1,6 +1,7 @@
 # Files
 .yarn
 node_modules
+coverage
 dist
 .env
 tsconfig.app.tsbuildinfo
