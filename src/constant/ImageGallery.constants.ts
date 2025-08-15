@@ -8,12 +8,12 @@ export const IMAGE_GALLERY_DATA: ImageGalleryDataType[] = [
     {
         id: 'image1',
         img: productCodeImage,
-        title: 'Table with computer setup and flowcharts',
+        title: 'A man with pen in hand working on computer with running code',
     },
     {
         id: 'image2',
         img: techImage,
-        title: 'Laptop with running code',
+        title: 'Illustration showing a man with some high tech goggles',
     },
     {
         id: 'image3',
@@ -23,7 +23,7 @@ export const IMAGE_GALLERY_DATA: ImageGalleryDataType[] = [
     {
         id: 'image4',
         img: uxDesignImage,
-        title: 'Dashboard UX Design samples',
+        title: 'Illustration showing text UI/UX with random icons',
     },
 ];
 
