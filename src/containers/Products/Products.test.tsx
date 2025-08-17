@@ -8,7 +8,7 @@ vi.mock('@components', async (importOriginal) => {
     return {
         ...actual,
         SectionWrapper: vi.fn((props: SectionWrapperProps) => (
-            <section aria-label="Top products" id="mock-section">
+            <section aria-label={props.title} id={props.id}>
                 {props.children}
             </section>
         )),
@@ -42,7 +42,7 @@ import { Products } from './Products.container';
 describe('Products Container', () => {
     it('should render top products container with child components', () => {
         const { getByRole } = render(<Products />);
-        const productSection = getByRole('region');
+        const productSection = getByRole('region', { name: /Top products/i });
         expect(SectionWrapper).toHaveBeenCalledWith(
             expect.objectContaining({
                 title: 'Top products',
@@ -57,9 +57,9 @@ describe('Products Container', () => {
         expect(titleElement).toBeInTheDocument();
 
         // Assertion on the separator to be in the section
-        const separator = within(productSection).getByRole('separator', {
+        const separators = within(productSection).getAllByRole('separator', {
             hidden: true,
         });
-        expect(separator).toBeInTheDocument();
+        expect(separators).toHaveLength(1);
     });
 });

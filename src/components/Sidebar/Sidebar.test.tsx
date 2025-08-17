@@ -1,5 +1,5 @@
 import { MemoryRouter } from 'react-router';
-import { describe, expect, it, type Mock, vi } from 'vitest';
+import { afterEach, describe, expect, it, type Mock, vi } from 'vitest';
 
 import { Logout as MockIcon } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -31,6 +31,9 @@ describe('Sidebar', () => {
     };
 
     const user = userEvent.setup();
+    afterEach(() => {
+        vi.clearAllMocks();
+    });
 
     // Helper wrapper with Theme + Router context
     const renderWithProviders = (ui: React.ReactElement) => {

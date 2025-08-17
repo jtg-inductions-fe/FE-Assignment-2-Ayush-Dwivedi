@@ -15,8 +15,8 @@ describe('SectionWrapper component', () => {
     const user = userEvent.setup();
 
     it('should render the component without subtitle and tooltip', () => {
-        const { getByRole, queryByText } = render(
-            <SectionWrapper title={MOCK_DATA.title} id="X" />,
+        const { getByRole, queryByText, queryByLabelText } = render(
+            <SectionWrapper title={MOCK_DATA.title} id={MOCK_DATA.id} />,
         );
 
         // Section wrapper is rendered properly
@@ -27,11 +27,17 @@ describe('SectionWrapper component', () => {
         expect(
             within(sectionElement).getByRole('heading', {
                 name: MOCK_DATA.title,
+                level: 2,
             }),
         ).toBeInTheDocument();
 
         // Assertion to check subtitle is not rendered when not passed
         expect(queryByText(MOCK_DATA.subtitle)).not.toBeInTheDocument();
+
+        // Assertion to check tooltip trigger is not rendered when not passed
+        expect(
+            queryByLabelText(`More info about ${MOCK_DATA.title}`),
+        ).not.toBeInTheDocument();
     });
 
     it('should render the component with subtitle', () => {
@@ -43,13 +49,13 @@ describe('SectionWrapper component', () => {
             />,
         );
 
-        expect(getByText(MOCK_DATA.subtitle)).toBeInTheDocument();
+        const subtitleEl = getByText(MOCK_DATA.subtitle);
+        expect(subtitleEl).toBeInTheDocument();
+        expect(subtitleEl.tagName).toBe('P');
     });
 
     it('should render the component with tooltip and its content', async () => {
-        const { getByLabelText, findByText } = render(
-            <SectionWrapper {...MOCK_DATA} />,
-        );
+        const { getByLabelText } = render(<SectionWrapper {...MOCK_DATA} />);
 
         // Assertion on Tooltip is rendered properly
         const tooltipButton = getByLabelText(
@@ -59,7 +65,9 @@ describe('SectionWrapper component', () => {
 
         // Tooltip text displays correctly on hover
         await user.hover(tooltipButton);
-        expect(await findByText(MOCK_DATA.infoTooltip)).toBeInTheDocument();
+        const tooltip = await within(document.body).findByRole('tooltip');
+        expect(tooltip).toHaveTextContent(MOCK_DATA.infoTooltip);
+        await user.unhover(tooltipButton);
     });
 
     it('should render children of the component', () => {
@@ -72,7 +80,7 @@ describe('SectionWrapper component', () => {
         // Assertion on Child is rendered properly
         const sectionElement = getByRole('region', { name: MOCK_DATA.title });
         expect(
-            within(sectionElement).queryByText('Child element'),
+            within(sectionElement).getByText('Child element'),
         ).toBeInTheDocument();
     });
 });

@@ -14,7 +14,7 @@ describe('SearchBar Component', () => {
     const user = userEvent.setup();
     it('should render clear button and dropdown with searchbar component', async () => {
         const mockHandleOnChange = vi.fn();
-        const { getByRole, getByText, getByLabelText } = render(
+        const { getByRole, findByLabelText, findByRole } = render(
             <SearchBar
                 searchOptions={OPTIONS}
                 value=""
@@ -30,12 +30,12 @@ describe('SearchBar Component', () => {
         expect(searchElement).toBeInTheDocument();
 
         // Asserting on opening the dropdown the options are rendered correctly.
-        await userEvent.click(searchElement);
-        const dropdown = getByRole('listbox');
-        const options = within(dropdown).getAllByRole('option');
+        await user.click(searchElement);
+        const dropdown = await findByRole('listbox');
+        const options = await within(dropdown).findAllByRole('option');
         expect(options).toHaveLength(OPTIONS.length);
         OPTIONS.forEach(({ title }) => {
-            expect(getByText(title)).toBeInTheDocument();
+            expect(within(dropdown).getByText(title)).toBeInTheDocument();
         });
 
         // Clicking on the list item should trigger the callback function correctly
@@ -48,7 +48,7 @@ describe('SearchBar Component', () => {
         expect(mockHandleOnChange).toHaveBeenCalledWith('Testing');
 
         // Asserting clear button is rendered correctly or not
-        const clearButton = getByLabelText('Clear');
+        const clearButton = await findByLabelText('Clear');
         expect(clearButton).toBeInTheDocument();
 
         // Clicking on clear button should clear the searchbar

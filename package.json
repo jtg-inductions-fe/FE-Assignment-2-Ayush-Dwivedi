@@ -14,7 +14,8 @@
         "prettier": "prettier --write ./",
         "postinstall": "husky install",
         "ts-check": "tsc --noEmit --project tsconfig.app.json",
-        "test": "vitest"
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage"
     },
     "dependencies": {
         "@emotion/react": "11.14.0",
