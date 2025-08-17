@@ -1,5 +1,5 @@
 import { MemoryRouter } from 'react-router';
-import { afterEach, describe, expect, it, type Mock, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { Logout as MockIcon } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -47,7 +47,7 @@ describe('Sidebar', () => {
     };
 
     it('should render sidebar items and bottom controls in desktop view', async () => {
-        (useMediaQuery as Mock).mockReturnValue(true);
+        vi.mocked(useMediaQuery).mockReturnValue(true);
         const { getByLabelText } = renderWithProviders(<Sidebar {...MOCKS} />);
 
         // Assertion to check Nav list is rendered properly
@@ -76,7 +76,7 @@ describe('Sidebar', () => {
     });
 
     it('should render sidebar in mobile view', () => {
-        (useMediaQuery as Mock).mockReturnValue(false);
+        vi.mocked(useMediaQuery).mockReturnValue(false);
         const { getByLabelText } = renderWithProviders(<Sidebar {...MOCKS} />);
 
         // Assertion to check Nav list is rendered properly

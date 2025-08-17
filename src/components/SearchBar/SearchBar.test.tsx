@@ -53,6 +53,6 @@ describe('SearchBar Component', () => {
 
         // Clicking on clear button should clear the searchbar
         await user.click(clearButton);
-        expect(searchElement.closest('input')?.value).toEqual('');
+        expect(searchElement).toHaveValue('');
     });
 });

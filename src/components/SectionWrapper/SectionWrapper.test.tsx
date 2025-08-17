@@ -45,7 +45,7 @@ describe('SectionWrapper component', () => {
             <SectionWrapper
                 title={MOCK_DATA.title}
                 subtitle={MOCK_DATA.subtitle}
-                id="X"
+                id={MOCK_DATA.id}
             />,
         );
 
