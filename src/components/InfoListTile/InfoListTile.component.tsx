@@ -9,12 +9,14 @@ import { type InfoListTileProps } from './InfoListTile.types';
  * @returns complete tile component with avatar, title, subtitle, rightNode
  *
  * @example usage
+ * ```tsx
  * <InfoListTile
  *      avatar={avatar}
  *      title="title"
  *      subtitle="subtitle"
  *      rightNode={<p>Sample</p>}
  * />
+ * ```
  */
 export const InfoListTile = ({
     avatar,

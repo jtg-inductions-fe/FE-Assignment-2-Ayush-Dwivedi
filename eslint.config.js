@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from 'eslint-plugin-storybook';
+
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -15,10 +18,10 @@ export default tseslint.config(
     { ignores: ['dist'] },
     {
         /*
-    Rules from `ts.configs.recommended` are included by default. For a full list of these rules,
-    please refer to the ESLint recommended configuration:
-    https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
-    */
+Rules from `ts.configs.recommended` are included by default. For a full list of these rules,
+please refer to the ESLint recommended configuration:
+https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
+*/
         extends: [
             ...tseslint.configs.recommendedTypeChecked,
             eslintConfigPrettier,
@@ -107,4 +110,5 @@ export default tseslint.config(
             },
         },
     },
+    storybook.configs['flat/recommended'],
 );
