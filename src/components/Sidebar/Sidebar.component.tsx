@@ -75,8 +75,17 @@ export const Sidebar = ({
                 >
                     {bottomControls.map((item, index) => (
                         <ListItem key={index} sx={{ width: 'fit-content' }}>
-                            <Link to={item.route} onClick={handleSidebarToggle}>
-                                <item.icon sx={{ color: 'text.primary' }} />
+                            <Link
+                                to={item.route}
+                                onClick={handleSidebarToggle}
+                                aria-label={item.label}
+                            >
+                                <item.icon
+                                    sx={{
+                                        color: 'text.primary',
+                                        display: 'block',
+                                    }}
+                                />
                             </Link>
                         </ListItem>
                     ))}

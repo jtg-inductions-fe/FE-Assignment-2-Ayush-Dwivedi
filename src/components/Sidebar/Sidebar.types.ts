@@ -86,4 +86,9 @@ export type SidebarBottomLinkType = {
      * Route to navigate on click
      */
     route: string;
+
+    /**
+     * Label text for bottom link
+     */
+    label: string;
 };

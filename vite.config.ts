@@ -1,8 +1,9 @@
 import type { UserConfig } from 'vite';
-import { defineConfig, loadEnv } from 'vite';
+import { loadEnv } from 'vite';
 import analyzer from 'vite-bundle-analyzer';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vitest/config';
 
 import react from '@vitejs/plugin-react';
 
@@ -39,57 +40,99 @@ export default defineConfig(({ mode }): UserConfig => {
     const PORT = parseInt(env.PORT) || undefined;
 
     /* Production-specific configuration */
-    if (mode === 'production') {
-        return {
-            ...commonConfig,
-            plugins: [
-                commonConfig.plugins,
-                /* Image optimization for production build */
-                ViteImageOptimizer({
-                    test: /\.(jpe?g|webp|png)$/i,
-                    includePublic: false,
-                    logStats: true,
-                    jpg: {
-                        quality: 90,
-                    },
-                    jpeg: {
-                        quality: 90,
-                    },
-                    webp: {
-                        quality: 90,
-                    },
-                    png: {
-                        quality: 90,
-                    },
-                }),
-            ],
-            build: {
-                ...commonConfig.build,
-                sourcemap: 'hidden', // Do not expose sourcemaps
-                minify: 'terser', // Terser for minification
-                terserOptions: {
-                    compress: {
-                        drop_console: true,
+    switch (mode) {
+        case 'production':
+            return {
+                ...commonConfig,
+                plugins: [
+                    commonConfig.plugins,
+                    /* Image optimization for production build */
+                    ViteImageOptimizer({
+                        test: /\.(jpe?g|webp|png)$/i,
+                        includePublic: false,
+                        logStats: true,
+                        jpg: {
+                            quality: 90,
+                        },
+                        jpeg: {
+                            quality: 90,
+                        },
+                        webp: {
+                            quality: 90,
+                        },
+                        png: {
+                            quality: 90,
+                        },
+                    }),
+                ],
+                build: {
+                    ...commonConfig.build,
+                    sourcemap: 'hidden', // Do not expose sourcemaps
+                    minify: 'terser', // Terser for minification
+                    terserOptions: {
+                        compress: {
+                            drop_console: true,
+                        },
                     },
                 },
-            },
-            server: {
-                strictPort: true,
-                port: PORT,
-            },
-        };
+                server: {
+                    strictPort: true,
+                    port: PORT,
+                },
+            };
+
         /* Development-specific configuration */
-    } else if (mode === 'development') {
-        return {
-            ...commonConfig,
-            build: {
-                ...commonConfig.build,
-                sourcemap: 'inline', // Include inline sourcemaps for easier debugging
-            },
-            server: {
-                strictPort: true,
-                port: PORT,
-            },
-        };
-    } else return commonConfig;
+        case 'development':
+            return {
+                ...commonConfig,
+                build: {
+                    ...commonConfig.build,
+                    sourcemap: 'inline', // Include inline sourcemaps for easier debugging
+                },
+                server: {
+                    strictPort: true,
+                    port: PORT,
+                },
+            };
+
+        /* Testing specific configurations */
+        case 'test':
+            return {
+                ...commonConfig,
+                test: {
+                    environment: 'jsdom',
+                    globals: true,
+                    setupFiles: ['./src/setupTests.ts'],
+                    include: ['**/*.test.{ts,tsx,js,jsx}'],
+                    exclude: [
+                        'node_modules',
+                        'dist',
+                        '.idea',
+                        '.git',
+                        '.cache',
+                    ],
+                    coverage: {
+                        provider: 'v8',
+                        exclude: [
+                            '**/index.ts', //barrel files
+                            '**/index.tsx',
+                            '**/*.types.ts',
+                            '**/*.types.tsx',
+                            '**/*.type.ts',
+                            '**/*.type.tsx',
+                            '**/*.constants.ts',
+                            '**/*.constants.tsx',
+                            '**/node_modules/**',
+                            '**/dist/**',
+                            '**/build/**',
+                            '**/*.config.ts',
+                            '**/*.config.js',
+                        ],
+                    },
+                },
+            };
+
+        default:
+            return commonConfig;
+    }
 });
