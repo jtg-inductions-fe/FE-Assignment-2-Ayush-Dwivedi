@@ -27,7 +27,7 @@ describe('Sidebar', () => {
             { type: 'listItem', label: 'Dashboard', route: '/dashboard' },
             { type: 'divider' },
         ],
-        bottomControls: [{ icon: MockIcon, route: '/logout' }],
+        bottomControls: [{ icon: MockIcon, route: '/logout', label: 'mock' }],
     };
 
     const user = userEvent.setup();
@@ -84,7 +84,7 @@ describe('Sidebar', () => {
         expect(navUlElement).toBeInTheDocument();
 
         // Assertion to check bottom controls are rendered correctly
-        const bottomControl = getByLabelText('sidebar bottom controls');
+        const bottomControl = getByLabelText(MOCKS.bottomControls[0].label);
         expect(bottomControl).toBeInTheDocument();
     });
 });
