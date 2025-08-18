@@ -12,3 +12,6 @@ tsconfig.node.tsbuildinfo
 .idea
 .DS_Store
 *.sw?
+
+*storybook.log
+storybook-static
