@@ -78,7 +78,7 @@ export const Sidebar = ({
                             <Link
                                 to={item.route}
                                 onClick={handleSidebarToggle}
-                                aria-label="Sidebar bottom control"
+                                aria-label={item.label}
                             >
                                 <item.icon
                                     sx={{

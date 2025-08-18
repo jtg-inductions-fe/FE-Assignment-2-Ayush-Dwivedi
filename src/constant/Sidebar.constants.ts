@@ -105,13 +105,16 @@ export const SIDEBAR_BOTTOM_LINKS: SidebarBottomLinkType[] = [
     {
         icon: TuneIcon,
         route: '/explore',
+        label: 'Explore',
     },
     {
         icon: PublicIcon,
         route: '/customize',
+        label: 'Customize',
     },
     {
         icon: SettingsIcon,
         route: '/settings',
+        label: 'Settings',
     },
 ];
