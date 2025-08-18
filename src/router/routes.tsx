@@ -21,13 +21,10 @@ export const routes: RouteObject[] = [
                 index: true,
                 element: <HomePage />,
             },
-        ],
-    },
-
-    {
-        path: '/',
-        element: <RootLayout hideSidebar={true} hideFooter={true} />,
-        children: [
+            {
+                path: '/auth',
+                element: 'dhb',
+            },
             {
                 path: '*',
                 element: <ErrorScreen status={404} />,

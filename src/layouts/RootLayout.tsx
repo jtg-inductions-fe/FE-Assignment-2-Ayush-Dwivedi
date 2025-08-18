@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Outlet } from 'react-router';
+import { Outlet, useParams } from 'react-router';
 
 import { Grid2 as Grid, useMediaQuery } from '@mui/material';
 
@@ -38,6 +38,8 @@ export const RootLayout = ({
     const handleSidebarToggle = () => {
         setSidebarOpen((prev) => !prev);
     };
+    const params = useParams();
+    const is404 = '*' in params;
 
     return (
         <Grid height="100vh">
@@ -48,7 +50,7 @@ export const RootLayout = ({
                 />
             </Grid>
             <Grid container direction="row">
-                {!(hideSidebar && isDesktop) && (
+                {!((is404 || hideSidebar) && isDesktop) && (
                     <Grid sx={{ width: { md: SIDEBAR_WIDTH } }}>
                         <Sidebar
                             isSidebarOpen={isSidebarOpen}
@@ -69,7 +71,9 @@ export const RootLayout = ({
                         <main>
                             <Outlet />
                         </main>
-                        {!hideFooter && <Footer socialLinks={FOOTER_LINKS} />}
+                        {!(is404 || hideFooter) && (
+                            <Footer socialLinks={FOOTER_LINKS} />
+                        )}
                     </ErrorBoundary>
                 </Grid>
             </Grid>
