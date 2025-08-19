@@ -22,10 +22,6 @@ export const routes: RouteObject[] = [
                 element: <HomePage />,
             },
             {
-                path: '/auth',
-                element: 'dhb',
-            },
-            {
                 path: '*',
                 element: <ErrorScreen status={404} />,
             },
